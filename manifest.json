@@ -18,6 +18,8 @@
         "http://127.0.0.1:5500/popup.html"
       ],
       "js": [
+        "modal.js",
+        "gameLogic.js",
         "localStorage.js",
         "app.js"
       ]
