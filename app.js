@@ -35,19 +35,20 @@
 
 
 
-
 // Modal container tempalte
 const modalHtml = `
-  <div id="dev-game-modal">
-    <div class="modal-header">
-      <span class="close">&times;</span>
-      <h2>Level Update</h2>
+  <button id="switch-btn" class="modal__switch">Status</button>
+  <div id="dev-game-modal" class="modal modal--badge">
+    <div class="modal__header">
+      <h2 class="modal__title">Level Update</h2>
     </div>
-    <div class="modal-body">
-      <p>Enter your daily description:</p>
-      <textarea id="description"></textarea>
-      <button id="submit-btn">Submit</button>
+    <div class="modal__body">
+      <p class="modal__text">Enter your daily description:</p>
+      <textarea id="description" class="modal__textarea"></textarea>
+      <button id="submit-btn" class="modal__button-save">Save</button>
+      <button id="reset-btn" class="modal__button modal__button-reset">Reset</button>
     </div>
+
   </div>
   `;
 
@@ -122,9 +123,10 @@ function showModal() {
   document.body.appendChild(modalContainer);
 
   const modal = document.getElementById('dev-game-modal');
-  const closeBtn = document.querySelector('.close');
+  const closeBtn = document.querySelector('.modal__close');
   const submitBtn = document.getElementById('submit-btn');
   const descriptionInput = document.getElementById('description');
+  const switchBtn = document.getElementById('switch-btn');
 
   // Submit button click event
   submitBtn.addEventListener('click', () => {
@@ -138,13 +140,14 @@ function showModal() {
     resetStats()
   });
   
-  // Hide modal on close button click
-  closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
+  
+  switchBtn.addEventListener('click', () => {
+    modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
   });
 
   // Init. modal show on loading.
-  modal.style.display = 'block';
+  // TODO: If no var in local show
+  modal.style.display = 'none';
 }
 
 /**
@@ -171,13 +174,13 @@ function updateScore(add=1) {
 function checkNextLevel() {
   console.log("Checking level upgrade!");
   
-  if (currentScore >= 100 && currentLevel < 2) {
+  if (currentScore >= 700 && currentLevel < 2) {
     currentLevel = 2;
-  } else if (currentScore >= 200 && currentLevel < 3) {
+  } else if (currentScore >= 1400 && currentLevel < 3) {
     currentLevel = 3;
-  } else if (currentScore >= 400 && currentLevel < 4) {
+  } else if (currentScore >= 3900 && currentLevel < 4) {
     currentLevel = 4;
-  } else if (currentScore >= 800 && currentLevel < 5) {
+  } else if (currentScore >= 9000 && currentLevel < 5) {
     currentLevel = 5;
     runWinCondistions()
     if (typeof inetrvalIdCheckNextLevel !== 'undefined') clearInterval(inetrvalIdCheckNextLevel)
@@ -232,6 +235,14 @@ window.addEventListener('mousemove', () => {
   updateScore(1)
 })
 
+window.onerror = function (message, source, lineno, colno, error) {
+  // Log or handle the error here
+  console.error('JavaScript Error:', message);
+  updateScore(local + 15)
+
+  // You can also send the error information to a server for tracking or analysis
+  // sendErrorToServer(message, source, lineno, colno, error);
+};
 
 // Set up the interval to run the checkNextLevel function
 inetrvalIdCheckNextLevel = setInterval(checkNextLevel, intervalCheckNextLevel);
