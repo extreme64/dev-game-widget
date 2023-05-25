@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <!-- Badge Background -->
+  <rect width="200" height="200" fill="#32CD32" rx="20"/>
+
+  <!-- Basic Shape -->
+  <path d="M100,20 L180,100 L100,180 L20,100 Z" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+
+  <!-- RTS Game Details -->
+  <circle cx="100" cy="100" r="70" fill="#FFD700" stroke="#000000" stroke-width="2"/>
+  <path d="M100,30 L170,100 L100,170 L30,100 Z" fill="#FFD700" stroke="#000000" stroke-width="2"/>
+
+  <!-- Ladybug Icon -->
+  <image href="https://cdn3.iconfinder.com/data/icons/glypho-miscellaneous/64/bug-512.png" x="70" y="70" width="60" height="60"/>
+</svg>

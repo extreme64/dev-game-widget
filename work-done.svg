@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <!-- Badge Background -->
+  <rect width="200" height="200" fill="#32CD32" rx="20" />
+
+  <!-- Badge Pattern -->
+  <image href="https://cdn4.iconfinder.com/data/icons/badges-9/66/81-512.png" width="180" height="180" x="10" y="10" />
+
+  <!-- Text Elements -->
+  <text x="100" y="70" text-anchor="middle" fill="#FFFFFF" font-family="Arial" font-size="16" font-weight="bold">Mission Success</text>
+  <text x="100" y="100" text-anchor="middle" fill="#FFFFFF" font-family="Arial" font-size="16" font-weight="bold">LEVEL 10</text>
+  <text x="100" y="130" text-anchor="middle" fill="#FFFFFF" font-family="Arial" font-size="16" font-weight="bold">Score: 5666</text>
+</svg>
