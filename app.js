@@ -38,7 +38,7 @@
  * @since 1.0.0
  * @type {number}
  */
-const intervalCheckNextLevel = 8000; // 4 seconds
+const intervalCheckNextLevel = 10000; // 10 seconds
 
 const inetrvalFormModal = 20000
 
@@ -134,7 +134,7 @@ function resetStats() {
   }
   else {
     let local = Number(getFromLocal('dgw_current_score'))
-    updateScore(local + 10)
+    updateScore(local + 25)
 
     // If var in local set hide form
     modalForm.style.display = 'none';
@@ -149,6 +149,8 @@ function resetStats() {
 
   // Show new work form
   resetBtn.addEventListener('click', () => {
+    workInfo.style.display = 'none';
+
     descriptionInput.value = ''
     modalForm.style.display = 'flex';
   });
@@ -176,13 +178,14 @@ function resetStats() {
   // Update score on mouse move
   window.addEventListener('mousemove', () => {
     // For each load reword is 1
-    updateScore(1)
+    updateScore(0.25)
   })
 
   window.onerror = function (message, source, lineno, colno, error) {
     // Log or handle the error here
-    console.error('JavaScript Error:', message);
-    updateScore(local + 15)
+    console.info('JavaScript Error:', message);
+    // FIXME: update on error, local is NULL
+    // updateScore(local + 15)
 
     // You can also send the error information to a server for tracking or analysis
     // sendErrorToServer(message, source, lineno, colno, error);
