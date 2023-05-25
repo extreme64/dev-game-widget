@@ -5,4 +5,4 @@ const getFromLocal = ((key) => {
 
 const saveToLocal = ((key, value) => {
     localStorage.setItem(key, value);
-})
+}) 

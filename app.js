@@ -75,7 +75,7 @@ let isDallyGameWon = false
 
 let modalContainer
 
-let modal 
+let modal
 let modalForm
 let submitBtn
 let resetBtn
@@ -83,7 +83,7 @@ let descriptionInput
 let switchBtn
 
 
-let workInfo 
+let workInfo
 let workDesc
 let workLevel
 let workScore
@@ -147,48 +147,46 @@ function resetStats() {
   }
 
 
+  // Show new work form
+  resetBtn.addEventListener('click', () => {
+    descriptionInput.value = ''
+    modalForm.style.display = 'flex';
+  });
+
+  // Submit new work
+  submitBtn.addEventListener('click', () => {
+    const description = descriptionInput.value;
+    // Handle the daily description
+    saveToLocal('dgw_desc', description)
+
+    modalForm.style.display = 'none';
+
+    // New desc new daily goal. Reset game.
+    resetStats()
+  });
+
+  switchBtn.addEventListener('click', () => {
+    modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+  });
+
+  // Init. modal show on loading.
+  modal.style.display = 'none';
 
 
-    // Show new work form
-    resetBtn.addEventListener('click', () => {
-      descriptionInput.value = ''
-      modalForm.style.display = 'flex';
-    });
+  // Update score on mouse move
+  window.addEventListener('mousemove', () => {
+    // For each load reword is 1
+    updateScore(1)
+  })
 
-    // Submit new work
-    submitBtn.addEventListener('click', () => {
-      const description = descriptionInput.value;
-      // Handle the daily description
-      saveToLocal('dgw_desc', description)
+  window.onerror = function (message, source, lineno, colno, error) {
+    // Log or handle the error here
+    console.error('JavaScript Error:', message);
+    updateScore(local + 15)
 
-      modalForm.style.display = 'none';
-
-      // New desc new daily goal. Reset game.
-      resetStats()
-    });
-
-    switchBtn.addEventListener('click', () => {
-      modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
-    });
-
-    // Init. modal show on loading.
-    modal.style.display = 'none';
-
-
-    // Update score on mouse move
-    window.addEventListener('mousemove', () => {
-      // For each load reword is 1
-      updateScore(1)
-    })
-
-    window.onerror = function (message, source, lineno, colno, error) {
-      // Log or handle the error here
-      console.error('JavaScript Error:', message);
-      updateScore(local + 15)
-
-      // You can also send the error information to a server for tracking or analysis
-      // sendErrorToServer(message, source, lineno, colno, error);
-    };
+    // You can also send the error information to a server for tracking or analysis
+    // sendErrorToServer(message, source, lineno, colno, error);
+  };
 
 })();
 

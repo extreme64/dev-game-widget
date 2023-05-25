@@ -28,7 +28,6 @@ function updateScore(add = 1) {
 function checkNextLevel() {
     console.log("Checking level upgrade!");
 
-    // TODO: add option to set session score
     if (currentScore >= 700 && currentLevel < 2) {
         currentLevel = 2;
     } else if (currentScore >= 1400 && currentLevel < 3) {
@@ -41,7 +40,6 @@ function checkNextLevel() {
         if (typeof inetrvalIdCheckNextLevel !== 'undefined') clearInterval(inetrvalIdCheckNextLevel)
     }
 
-
     if (currentScore !== getFromLocal('dgw_current_score')) {
         saveToLocal('dgw_current_score', currentScore)
     }
@@ -51,4 +49,4 @@ function checkNextLevel() {
         console.log("New level:", `${currentLevel}`);
 
     }
-}
+} 
