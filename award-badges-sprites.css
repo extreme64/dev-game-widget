@@ -1,0 +1,71 @@
+
+/* Wrap */
+#awards-badges .awards {}
+
+.awards--badge {
+    position: relative;
+    display: flex;
+    border-radius: var(--border-radius);
+    z-index: 9;
+}
+
+.awards__background {}
+
+.awards__test {}
+
+.awards__download {
+    display: none;
+}
+
+.awards__button {}
+
+
+/* Animate spawn */
+@keyframes spawn {
+    0% {
+        right: -90px;
+        opacity: 0;
+    }
+    30% {
+        right: 10px;
+        opacity: 1;
+    }
+    93% {
+        right: 10px;
+        opacity: 1;
+    }
+    99% {
+        right: -80px;
+        opacity: 0.1;
+    }
+    100% {
+        right: -90px;
+        opacity: 0;
+    }
+}
+
+
+/* Sprites */
+.sprite {
+    position: relative;
+    opacity: 0;
+    border-radius: 20px;
+    animation-name: spawn;
+    animation-duration: 4s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+    --sprite-background: url(ph-awards-badges.png)
+}
+
+.sprite1 {
+    width: 88px;
+    height: 88px;
+    background: var(--sprite-background) -0px -0px;
+}
+
+.sprite2 {
+    width: 176px;
+    height: 88px;
+    background: var(--sprite-background) -0px -0px;
+}
