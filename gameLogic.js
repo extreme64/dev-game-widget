@@ -46,11 +46,11 @@ function checkNextLevel() {
     console.log("Checking level upgrade!");
 
     const scoreThresholds = [0, 700, 1400, 3900, 9000, 20000, 45000, 100000, 230000, 600000];
-    let currentLevel = 0;
+    let currentLevel = 1;
 
     for (let level = 1; level <= 10; level++) {
-        if (currentScore >= scoreThresholds[level] && currentLevel < level) {
-            currentLevel = level;
+        if (currentScore >= scoreThresholds[level] && currentLevel < level+1) {
+            currentLevel = currentLevel + 1;
         }
     }
 
