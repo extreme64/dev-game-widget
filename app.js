@@ -38,9 +38,9 @@
  * @since 1.0.0
  * @type {number}
  */
-const intervalCheckNextLevel = 10000; // 10 seconds
+const intervalCheckNextLevel = 4000; // 10 seconds
 
-const inetrvalFormModal = 20000
+const inetrvalFormModal = 15000
 
 /**
  * The level that signifies success.
@@ -76,10 +76,10 @@ let isDallyGameWon = false
 let modalContainer
 
 let modal
-let modalForm
+let workForm
 let submitBtn
 let resetBtn
-let descriptionInput
+let workDescription
 let switchBtn
 
 
@@ -87,6 +87,8 @@ let workInfo
 let workDesc
 let workLevel
 let workScore
+
+let abilites
 
 // ----------------------------------------------------------------------------------
 
@@ -113,20 +115,22 @@ function resetStats() {
   console.log('Page is ready!');
 
   modalContainer = document.createElement('div');
-  modalContainer.innerHTML = modalHtml;
+  modalContainer.innerHTML = widgetHtml;
   document.body.appendChild(modalContainer);
 
   modal = document.getElementById('dev-game-modal');
-  modalForm = document.getElementById('new-work-form');
+  workForm = document.getElementById('new-work-form');
   submitBtn = document.getElementById('submit-btn');
   resetBtn = document.getElementById('reset-btn');
-  descriptionInput = document.getElementById('description');
+  workDescription = document.getElementById('description');
   switchBtn = document.getElementById('switch-btn');
 
-  workInfo = document.querySelector(".modal__work")
-  workDesc = document.querySelector(".modal__work-desciption")
-  workLevel = document.querySelector(".modal__work-level")
-  workScore = document.querySelector(".modal__work-score")
+  workInfo = document.querySelector(".widget__work")
+  workDesc = document.querySelector(".widget__work-desciption")
+  workLevel = document.querySelector(".widget__work-level")
+  workScore = document.querySelector(".widget__work-score")
+
+  abilites = document.querySelector("[data-abilities]")
 
   const savedScore = getFromLocal('dgw_current_score')
   if (savedScore === null) {
@@ -134,34 +138,41 @@ function resetStats() {
   }
   else {
     let local = Number(getFromLocal('dgw_current_score'))
-    updateScore(local + 25)
+    updateScore(local + 35)
 
     // If var in local set hide form
-    modalForm.style.display = 'none';
+    workForm.style.display = 'none';
 
     // Show work info
-    workInfo.style.display = 'flex';
-    workDesc.innerText = '"' + getFromLocal('dgw_desc') + '"';
-    workLevel.innerText = getFromLocal('dgw_current_level');
-    workScore.innerText = getFromLocal('dgw_current_score');
+    workInfo.style.display = 'grid';
+    workDesc.innerText = getFromLocal('dgw_desc');
+    workLevel.innerText = '🆙 LEVEL ' + getFromLocal('dgw_current_level');
+    workScore.innerText = '🎮 ' + getFromLocal('dgw_current_score');
   }
 
 
   // Show new work form
-  resetBtn.addEventListener('click', () => {
-    workInfo.style.display = 'none';
+  resetBtn.addEventListener('click', (e) => {
 
-    descriptionInput.value = ''
-    modalForm.style.display = 'flex';
+    if(workForm.style.display === 'flex'){
+      workInfo.style.display = 'grid';
+      workForm.style.display = 'none';
+      e.target.innerText = "Reset"
+    } else {
+      workDescription.value = ''
+      workInfo.style.display = 'none';
+      workForm.style.display = 'flex';
+      e.target.innerText = "Cancel"
+    }
   });
 
   // Submit new work
   submitBtn.addEventListener('click', () => {
-    const description = descriptionInput.value;
+    const description = workDescription.value;
     // Handle the daily description
     saveToLocal('dgw_desc', description)
 
-    modalForm.style.display = 'none';
+    workForm.style.display = 'none';
 
     // New desc new daily goal. Reset game.
     resetStats()
@@ -190,6 +201,11 @@ function resetStats() {
     // You can also send the error information to a server for tracking or analysis
     // sendErrorToServer(message, source, lineno, colno, error);
   };
+
+
+
+  // Add click listeners for abilite list btn.
+  setAbilitesListeners(abilites.children, abclick)
 
 })();
 
