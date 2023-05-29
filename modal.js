@@ -1,36 +1,56 @@
 // Modal container tempalte
-const modalHtml = `
+const widgetHtml = `
   <main id="wgw-main" class="wgw-main">
-    <!-- Maximize widget -->
-    <button id="switch-btn" class="modal__switch">Status</button>
-    
-    <!-- Widget -->
-    <div id="dev-game-modal" class="modal modal--badge">
-      <div class="modal__header">
-        <h2 class="modal__title">Work Session</h2>
-      </div>
-      <div id="new-work-form" class="modal__body">
-        <p class="modal__text">Enter work description:</p>
-        <textarea id="description" class="modal__textarea"></textarea>
-        <button id="submit-btn" class="modal__button-save">Save</button>
-      </div>
-      <div class="modal__work">
-        <h3 class="modal__work-desciption">Some work task info text.</h3>
-        <p class="modal__work-level">4</p>
-        <p class="modal__work-score">4000</p>
-      </div>
-      <button id="reset-btn" class="modal__button modal__button-reset">Reset</button>
+  <!-- Maximize widget -->
+  <button id="switch-btn" class="modal__switch">Status</button>
+
+  <div id="dev-game-modal" class="widget">
+    <!-- avatar -->
+    <div class="widget__avatar">
+      ✨✨✨
     </div>
-    
-    <!-- Awards -->
-    <div id="awards-badges" class="awards awards--badge">
-      <div class="awards__background sprite sprite1">
-        <span class="awards__test"></span>
-        <span class="awards__download">
-          <button class="awards__button">Save award</button>
-        </span>  
-      </div>
+    <!-- user wrap -->
+    <div class="widget__user">
+      <a href="https://github.com/extreme64"  title="Visit profile" target="_blank">
+        👦 Mast_G
+      </a>
     </div>
-    
-  </main>
-  `;
+    <!-- Setup -->
+    <div class="widget__setup">
+      <a href="https://forwardcreating.com" alt="pc gaming setup" title="If you have time, check gaming parts." target="_blank">
+        <img class="widget__setup-img" src="images/organic-flat-gamer-room-illustration.png"
+          alt="developer pc setup">
+      </a>
+    </div>
+    <!-- stats wrap -->
+    <div class="widget__stats">
+      <div id="new-work-form" class="widget__stats-inner">
+        <p class="widget__stats-text">Enter work description:</p>
+        <textarea id="description" class="widget__stats-desc-input"></textarea>
+        <button id="submit-btn" class="widget__stats-button-save">Save</button>
+      </div>
+      <div class="widget__work">
+        <div>🔖</div>
+        <h3 class="widget__work-desciption widget__stats-item">Some work task info text.</h3>
+        <p class="widget__work-level widget__stats-item">4</p>
+        <p class="widget__work-score widget__stats-item">4000</p>
+      </div>
+      <button id="reset-btn" class="widget__stats-button widget__stats-button-reset">Reset</button>
+    </div>
+    <!-- abilities wrap -->
+    <div class="widget__abilities">
+      ${abilitiesHtml}
+    </div>
+  </div>
+  
+  <!-- Awards -->
+  <div id="awards-badges" class="awards awards--badge">
+    <div class="awards__background sprite sprite1">
+      <span class="awards__test"></span>
+      <span class="awards__download">
+        <button class="awards__button">Save award</button>
+      </span>  
+    </div>
+  </div>
+
+</main>`;

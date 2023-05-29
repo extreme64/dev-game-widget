@@ -55,7 +55,7 @@
     animation-timing-function: ease-out;
     animation-iteration-count: 1;
     animation-play-state: paused;
-    --sprite-background: url(ph-awards-badges.png)
+    --sprite-background: url(images/ph-awards-badges.png)
 }
 
 .sprite1 {

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev. project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
+    <style>
+        /* widget styles */
+        .widget {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            padding-bottom: 10px;
+            background-color: #344B43;
+            background-image: url(images/robot-human-silhouettes_23-2150042393.jpg);
+            background-position: right bottom;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border: 2px solid #009C65;
+            border-radius: 30px;
+        }
+
+        /* avatar styles */
+        .widget__avatar {
+            display: flex;
+            width: 150px;
+            height: 200px;
+            margin: 40px auto;
+            justify-content: center;
+            background-image: url(images/pirate-skull-with-anchor-cartoon-illustration_138676-2745.jpg);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 100px;
+            overflow: hidden;
+            filter: drop-shadow(0px 7px 27px #b67d16);
+            box-shadow: 0px 0px 20px 6px #b67d16;
+        }
+
+        /* user wrap styles */
+        .widget__user {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            color: #BD0533;
+            background-color: #1C7858;
+            border-radius: 15px;
+            margin: 5px 10px;
+        }
+
+        /* stats wrap styles */
+        .widget__stats {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #E88900;
+            background-color: #1C7858;
+            border-radius: 15px;
+            margin: auto 10px;
+        }
+
+        /* stats item styles */
+        .widget__stats-item {}
+
+        /* Setup */
+        .widget__setup {
+            display: flex;
+            justify-content: center;
+            box-shadow: inset 0px 0px 20px 17px #08231a;
+        }
+
+        .widget__setup-img {
+            width: 100%;
+            margin: 20px auto;
+            filter: drop-shadow(0px 7px 27px #08231a);
+        }
+
+        /* abilities wrap styles */
+        .widget__abilities {
+            display: flex;
+            justify-content: center;
+            color: #009C65;
+        }
+
+        /* abilities list styles */
+        .widget__abilities-list {
+            display: flex;
+            border-radius: 15px;
+            margin: 20px 10px;
+            padding: 10px 10px;
+            align-items: center;
+            background-color: #1C7858;
+        }
+
+        /* abilities item styles */
+        .widget__abilities-item {
+            display: flex;
+            width: 25px;
+            height: 25px;
+            padding: 3px;
+            list-style-type: none;
+            border: 1px solid #344B43;
+            border-radius: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- widget wrap -->
+    <div class="widget">
+
+        <!-- avatar -->
+        <div class="widget__avatar">
+            ✨✨✨
+        </div>
+
+        <!-- user wrap -->
+        <div class="widget__user">
+            👦 Mast_G
+        </div>
+
+        <!-- Setup -->
+        <div class="widget__setup">
+            <img class="widget__setup-img" src="images/organic-flat-gamer-room-illustration.png"
+                alt="developer pc setup">
+        </div>
+
+        <!-- stats wrap -->
+        <div class="widget__stats">
+            <span class="widget__stats-item">🔖 Title</span>
+            <span class="widget__stats-item">🆙 Level 0</span>
+            <span class="widget__stats-item">🎮 Score: 6000</span>
+        </div>
+
+        <!-- abilities wrap -->
+        <div class="widget__abilities">
+            <ul class="widget__abilities-list">
+                <li class="widget__abilities-item">🔮</li>
+                <li class="widget__abilities-item">💎</li>
+                <li class="widget__abilities-item">🔎</li>
+                <li class="widget__abilities-item">💡</li>
+                <li class="widget__abilities-item">📈</li>
+                <li class="widget__abilities-item">✂️</li>
+                <li class="widget__abilities-item">🔫</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+
+</html>
