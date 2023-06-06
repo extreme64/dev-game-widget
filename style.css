@@ -34,7 +34,6 @@
 
 
 
-
 #wgw-main {
     position: absolute;
     top: 85px;
@@ -58,13 +57,6 @@
     border-radius: var(--border-radius);
     z-index: 20;
 }
-
-
-
-
-
-
-
 
 
 
@@ -169,7 +161,6 @@
 }
 
 
-
 .widget__work {
     display: grid;
     align-items: center;
@@ -201,41 +192,4 @@
     width: 100%;
     margin: 10px auto;
     filter: drop-shadow(0px 7px 27px #08231a);
-}
-
-/* abilities wrap styles */
-.widget__abilities {
-    display: flex;
-    justify-content: center;
-    color: #009C65;
-}
-
-/* abilities list styles */
-.widget__abilities-list {
-    display: flex;
-    border-radius: 15px;
-    margin: 20px auto auto;
-    padding: 10px 10px;
-    align-items: center;
-    background-color: #1C7858;
-}
-
-/* abilities item styles */
-.widget__abilities-item {
-    display: flex;
-    width: 25px;
-    height: 25px;
-    padding: 3px;
-    list-style-type: none;
-    border: 1px solid #344B43;
-    border-radius: 10px;
-    align-items: center;
-    justify-content: center;
-}
-
-.widget__abilities-item:hover,
-.widget__abilities-item:active {
-    color: var(--text-color);
-    background-color: var(--box-shadow-color);
-    cursor: pointer;
 }

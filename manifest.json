@@ -28,6 +28,7 @@
       ,
       "css": [
         "award-badges-sprites.css",
+        "abilities.css",
         "style.css"
       ]
     }

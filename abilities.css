@@ -1,0 +1,41 @@
+/* abilities wrap styles */
+.widget__abilities {
+    display: flex;
+    justify-content: center;
+    color: #009C65;
+}
+
+/* abilities list styles */
+.widget__abilities-list {
+    display: flex;
+    border-radius: 15px;
+    margin: 20px auto auto;
+    padding: 10px 10px;
+    align-items: center;
+    background-color: #1C7858;
+}
+
+/* abilities item styles */
+.widget__abilities-item {
+    display: flex;
+    width: 25px;
+    height: 25px;
+    padding: 3px;
+    list-style-type: none;
+    border: 1px solid #344B43;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.widget__abilities-item:hover,
+.widget__abilities-item:active {
+    color: var(--secondary-color);
+    background-color: var(--box-shadow-color);
+    cursor: pointer;
+}
+
+.widget__abilities-item.used {
+    color: var(--color-secondary-2-0);
+    background-color: var(--secondary-color);
+}

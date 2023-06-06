@@ -97,7 +97,7 @@ const AbilitiesModule = (function () {
         event.currentTarget.removeEventListener('click', listener);
 
         // Style btn. as 'spent'
-        event.currentTarget.classList.add('disabled');
+        event.currentTarget.classList.add('used');
 
         // Update the isUsed status of the ability
         abilities[abilityId].isUsed = true;
