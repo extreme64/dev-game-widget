@@ -39,7 +39,7 @@ const widgetHtml = `
     </div>
     <!-- abilities wrap -->
     <div class="widget__abilities">
-      ${abilitiesHtml}
+      ${AbilitiesModule.abilitiesHtml}
     </div>
   </div>
   

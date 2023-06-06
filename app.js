@@ -205,7 +205,7 @@ function resetStats() {
 
 
   // Add click listeners for abilite list btn.
-  setAbilitesListeners(abilites.children, abclick)
+  AbilitiesModule.setAbilitiesListeners(abilites.children, AbilitiesModule.abclick);
 
 })();
 
