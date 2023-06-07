@@ -202,10 +202,8 @@ function resetStats() {
     // sendErrorToServer(message, source, lineno, colno, error);
   };
 
-
-
-  // Add click listeners for abilite list btn.
-  AbilitiesModule.setAbilitiesListeners(abilites.children, AbilitiesModule.abclick);
+  // Set abilities
+  AbilitiesModule.init(abilites.children)
 
 })();
 

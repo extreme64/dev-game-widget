@@ -69,25 +69,20 @@ const AbilitiesModule = (function () {
         }
     ];
 
-    function setData(node, id) {
-        node.dataset.id = abilities[id].id;
-        node.setAttribute("title", abilities[id].title);
-        node.innerText = abilities[id].icon;
+    function init(abilitesChildren) {
+        setNodesData(abilites.children);
+        Events.setEventListeners("click", abilitesChildren, abilityClick);
     }
 
-    function setAbilitiesListeners(nodeList, callback) {
-        if (typeof nodeList !== 'undefined') {
-            [...nodeList].forEach(node => {
-                const listener = function (event) {
-                    callback(node.dataset.id, event, listener);
-                };
-                node.addEventListener('click', listener);
-                setData(node, Number(node.dataset.id));
-            });
-        }
+    function setNodesData(nodeList) {
+        [...nodeList].forEach((node,id) => {
+            node.dataset.id = abilities[id].id;
+            node.setAttribute("title", abilities[id].title);
+            node.innerText = abilities[id].icon;
+        })
     }
 
-    function abclick(abilityId, event, listener) {
+    function abilityClick(abilityId, event, listener) {
         if (typeof abilities === 'undefined') return;
 
         // If the ability is already used, return
@@ -110,8 +105,9 @@ const AbilitiesModule = (function () {
     }
 
     return {
-        setAbilitiesListeners: setAbilitiesListeners,
-        abclick: abclick,
-        abilitiesHtml: abilitiesHtml
+        abilityClick: abilityClick,
+        setNodesData: setNodesData,
+        abilitiesHtml: abilitiesHtml,
+        init: init
     };
 })();
