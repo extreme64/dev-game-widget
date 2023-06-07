@@ -1,6 +1,7 @@
 // Modal container tempalte
 const widgetHtml = `
-  <main id="wgw-main" class="wgw-main">
+<main id="wgw-main" class="wgw-main">
+  
   <!-- Maximize widget -->
   <button id="switch-btn" class="modal__switch">Status</button>
 
@@ -44,13 +45,6 @@ const widgetHtml = `
   </div>
   
   <!-- Awards -->
-  <div id="awards-badges" class="awards awards--badge">
-    <div class="awards__background sprite sprite1">
-      <span class="awards__test"></span>
-      <span class="awards__download">
-        <button class="awards__button">Save award</button>
-      </span>  
-    </div>
-  </div>
+  ${Badges.level}
 
 </main>`;

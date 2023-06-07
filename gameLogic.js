@@ -1,22 +1,9 @@
-
-function showAwardBadge(awardID){
-    const awardWrapEl = document.querySelector("#awards-badges")
-    const sprite = document.querySelector("#awards-badges .sprite")
-    awardWrapEl.style.display = "flex"
-    sprite.style.animationPlayState= "running";
-
-    // Self hide
-    setTimeout(() => {
-        if (typeof awardWrapEl === 'undefined' || typeof sprite === 'undefined') return
-        awardWrapEl.style.display = 'none';
-        sprite.style.animationPlayState = "paused";
-    }, 4000);
-}
-
 /**
  * Checks if the currentLevel is equal to the SUCCESS_LEVEL
  * 
  * @since 1.0.0
+ */
+
 /**
  *
  *
@@ -70,6 +57,6 @@ function checkNextLevel() {
         console.log("New level:", `${currentLevel}`);
 
         // Show award
-        showAwardBadge(1)
+        Badges.showAward(1)
     }
 } 
