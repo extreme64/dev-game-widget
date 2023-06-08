@@ -32,7 +32,7 @@ const RunAllTests = (() => {
      *
      */
     function runAll() {
-        TestBadges.checkShowBadges()
+        TestBadges.checkShowBadges(getFromLocal('dgw_current_level'))
     }
 
     const getTestRunTotal = (() => { return testRunTotal })

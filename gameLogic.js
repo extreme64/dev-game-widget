@@ -57,6 +57,6 @@ function checkNextLevel() {
         console.log("New level:", `${currentLevel}`);
 
         // Show award
-        Badges.showAward(1)
+        Badges.showAward(currentLevel)
     }
 } 

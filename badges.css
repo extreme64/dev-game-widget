@@ -28,11 +28,11 @@
         opacity: 0;
     }
     30% {
-        right: 10px;
+        right: 0px;
         opacity: 1;
     }
     93% {
-        right: 10px;
+        right: 0px;
         opacity: 1;
     }
     99% {
@@ -50,6 +50,7 @@
 .sprite {
     position: relative;
     opacity: 0;
+    border: 2px solid var(--primary-color);
     border-radius: 20px;
     animation-name: spawn;
     animation-duration: 4s;
@@ -62,11 +63,33 @@
 .sprite1 {
     width: 88px;
     height: 88px;
-    background: var(--sprite-background) -0px -0px;
+    background: var(--sprite-background) -396px -88px;
 }
 
 .sprite2 {
-    width: 176px;
+    width: 88px;
     height: 88px;
-    background: var(--sprite-background) -0px -0px;
+    background: var(--sprite-background) -483px -88px;
+    animation-duration: 4.2s;
+}
+
+.sprite3 {
+    width: 88px;
+    height: 88px;
+    background: var(--sprite-background) -571px -88px;
+    animation-duration: 4.5s;
+}
+
+.sprite4 {
+    width: 88px;
+    height: 88px;
+    background: var(--sprite-background) -660px -88px;
+    animation-duration: 4.7s;
+}
+
+.sprite5 {
+    width: 88px;
+    height: 88px;
+    background: var(--sprite-background) -747px -88px;
+    animation-duration: 5s;
 }

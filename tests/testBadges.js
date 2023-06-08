@@ -2,7 +2,7 @@ const TestBadges = (() => {
 
     const badgesChecksList = "#badges"
 
-    function checkShowBadges() {
+    function checkShowBadges(currentLevel) {
 
         let testStatustext
 
