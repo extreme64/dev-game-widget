@@ -115,7 +115,7 @@ function resetStats() {
   console.log('Page is ready!');
 
   modalContainer = document.createElement('div');
-  modalContainer.innerHTML = widgetHtml;
+  modalContainer.innerHTML = AppView.layout;
   document.body.appendChild(modalContainer);
 
   modal = document.getElementById('dev-game-modal');
@@ -205,13 +205,12 @@ function resetStats() {
   // Set abilities
   AbilitiesModule.init(abilites.children)
 
+  RunAllTests.init(modalContainer)
+
 })();
 
 
-// DOM is loaded
-document.addEventListener('DOMContentLoaded', function () {
-  console.log('DOM is loaded!');
-});
+
 
 // Fully loaded
 window.addEventListener('load', function () {

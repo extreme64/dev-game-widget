@@ -70,7 +70,7 @@ const AbilitiesModule = (function () {
     ];
 
     function init(abilitesChildren) {
-        setNodesData(abilites.children);
+        setNodesData(abilitesChildren);
         Events.setEventListeners("click", abilitesChildren, abilityClick);
     }
 

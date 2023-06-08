@@ -5,7 +5,7 @@
   "description": "Daly dev. life as a game.",
   "browser_action": {
     "default_icon": "icon.png",
-    "default_popup": "popup.html"
+    "default_popup": "sandbox-pages/popup.html"
   },
   "permissions": [
     "activeTab",
@@ -20,21 +20,21 @@
         "http://127.0.0.1:5500/tests/index.html"
       ],
       "js": [
-        "abilities.js",
-        "badges.js",
-        "modal.js",
-        "gameLogic.js",
-        "events.js",
-        "localStorage.js",
-        "utils.js",
-        "app.js",
+        "components/abilities/abilities.js",
+        "components/badges/badges.js",
+        "templates/appView.js",
+        "core/gameLogic.js",
+        "core/events.js",
+        "core/localStorage.js",
+        "core/utils.js",
         "tests/testBadges.js",
-        "tests/runAllTests.js"
+        "tests/runAllTests.js",
+        "app.js"
       ]
       ,
       "css": [
-        "badges.css",
-        "abilities.css",
+        "components/abilities/abilities.css",
+        "components/badges/badges.css",
         "style.css"
       ]
     }

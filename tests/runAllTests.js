@@ -10,7 +10,7 @@ const RunAllTests = (() => {
             </ul>
         </aside>`
 
-    function init() { 
+    function init(modalContainer) { 
         const urlParams = new URLSearchParams(window.location.search);
         const isTestingMode = urlParams.has('testing') && urlParams.get('testing') == 'true';
 
@@ -47,4 +47,4 @@ const RunAllTests = (() => {
     }
 })(TestBadges)
 
-RunAllTests.init()
+// RunAllTests.init(modalContainer)
