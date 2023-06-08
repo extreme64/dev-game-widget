@@ -1,7 +1,5 @@
 const TestBadges = (() => {
 
-    const badgesChecksList = "#badges"
-
     function checkShowBadges(currentLevel) {
 
         let testStatustext
@@ -15,15 +13,12 @@ const TestBadges = (() => {
         } else {
             testStatustext = 'FAILED'
         }
-        RunAllTests.addTestDone()
+        RunAllTests.increaseTestTotal()
 
         const testResultElement = document.createElement('li');
         testResultElement.textContent = `Show on new level : ${testStatustext}.`
         
-        // FIXME: querySelector from RunAllTests as element
-        document.querySelector(badgesChecksList).appendChild(testResultElement)
-        
-        console.log(testStatustext);
+        document.querySelector(RunAllTests.badgesList).appendChild(testResultElement)
     }
 
     return {

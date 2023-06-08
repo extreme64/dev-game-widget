@@ -1,6 +1,8 @@
 // Modal container tempalte
 const AppView = (() => {
 
+
+  // TODO: All html into comp. and add js/events to it
   const widgetHtml = `
     <main id="wgw-main" class="wgw-main">
       
