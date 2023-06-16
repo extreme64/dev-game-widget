@@ -20,6 +20,9 @@
         "http://127.0.0.1:5500/tests/index.html"
       ],
       "js": [
+        "components/user/user.js",
+        "components/setup/setup.js",
+        "components/stats/stats.js",
         "components/abilities/abilities.js",
         "components/badges/badges.js",
         "templates/appView.js",

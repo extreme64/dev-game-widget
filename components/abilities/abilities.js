@@ -1,14 +1,17 @@
 const AbilitiesModule = (function () {
 
-    const abilitiesHtml = `<ul data-abilities class="widget__abilities-list">
-        <li data-id="0" class="widget__abilities-item" title=""></li>
-        <li data-id="1" class="widget__abilities-item" title=""></li>
-        <li data-id="2" class="widget__abilities-item" title=""></li>
-        <li data-id="3" class="widget__abilities-item" title=""></li>
-        <li data-id="4" class="widget__abilities-item" title=""></li>
-        <li data-id="5" class="widget__abilities-item" title=""></li>
-        <li data-id="6" class="widget__abilities-item" title=""></li>
-    </ul>`;
+    const html = `
+        <div class="widget__abilities">
+            <ul data-abilities class="widget__abilities-list">
+                <li data-id="0" class="widget__abilities-item" title=""></li>
+                <li data-id="1" class="widget__abilities-item" title=""></li>
+                <li data-id="2" class="widget__abilities-item" title=""></li>
+                <li data-id="3" class="widget__abilities-item" title=""></li>
+                <li data-id="4" class="widget__abilities-item" title=""></li>
+                <li data-id="5" class="widget__abilities-item" title=""></li>
+                <li data-id="6" class="widget__abilities-item" title=""></li>
+            </ul>
+        </div>`;
 
     const abilities = [
         {
@@ -107,7 +110,8 @@ const AbilitiesModule = (function () {
     return {
         abilityClick: abilityClick,
         setNodesData: setNodesData,
-        abilitiesHtml: abilitiesHtml,
+        html: html,
         init: init
     };
+    
 })();

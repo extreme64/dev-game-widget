@@ -185,6 +185,15 @@
 .widget__stats-item {
     margin: auto;
     padding: 4px 0;
+    text-align: center;
+}
+.widget__work-desciption {
+    font-size: 18px;
+}
+.widget__work-level,
+.widget__work-score {
+    font-weight: 700;
+    font-size: 23px;
 }
 
 /* Setup */
