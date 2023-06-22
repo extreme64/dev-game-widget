@@ -4,20 +4,20 @@
     box-sizing: initial;
 }
 
-.badges--level {
+#badges-levels .badges--level {
     position: relative;
     display: flex;
     border-radius: var(--border-radius);
     z-index: 9;
 }
 
-.badges__download {
+#badges-levels. badges__download {
     display: none;
 }
 
-.badges__background,
-.badges__test, 
-.badges__button {
+#badges-levels .badges__background,
+#badges-levels .badges__test, 
+#badges-levels .badges__button {
     color: initial;
 }
 
