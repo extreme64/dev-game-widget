@@ -71,7 +71,8 @@
     width: 300px;
     padding-bottom: 10px;
     background-color: #344B43;
-    background-image: url(images/robot-human-silhouettes_23-2150042393.jpg);
+    background-image: url(https://www.imgbly.com/ib/CChCEcFFW0.jpg);
+    /* background-image: url(images/robot-human-silhouettes_23-2150042393.jpg); */
     background-position: right bottom;
     background-repeat: no-repeat;
     background-size: cover;
@@ -89,7 +90,8 @@
     height: 130px;
     margin: 25px auto;
     justify-content: center;
-    background-image: url(images/pirate-skull-with-anchor-cartoon-illustration_138676-2745.jpg);
+    background-image: url(https://www.imgbly.com/ib/ndGtus4842.jpg);
+        /* background-image: url(pirate-skull-with-anchor-cartoon-illustration_138676-2745.jpg); */
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

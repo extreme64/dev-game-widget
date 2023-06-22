@@ -10,14 +10,16 @@
   "permissions": [
     "activeTab",
     "storage",
-    "https://api.openai.com/*"
+    "https://api.openai.com/*",
+    "https://www.imgbly.com/"
   ],
   "content_scripts": [
     {
       "matches": [
         "http://127.0.0.1:5500/popup.html",
         "http://127.0.0.1:5500/index.html*",
-        "http://127.0.0.1:5500/tests/index.html"
+        "http://127.0.0.1:5500/tests/index.html",
+		    "http://localhost/*"
       ],
       "js": [
         "components/user/user.js",

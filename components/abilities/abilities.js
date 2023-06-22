@@ -1,5 +1,6 @@
 const AbilitiesModule = (function () {
 
+    // FIXME: Remove all emojies to images, some websites changed them to their verrsions
     const html = `
         <div class="widget__abilities">
             <ul data-abilities class="widget__abilities-list">
