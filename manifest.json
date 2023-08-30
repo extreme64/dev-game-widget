@@ -28,6 +28,7 @@
         "components/abilities/abilities.js",
         "components/badges/badges.js",
         "templates/appView.js",
+        "core/tracking.js",
         "core/gameLogic.js",
         "core/events.js",
         "core/localStorage.js",
