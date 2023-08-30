@@ -4,6 +4,18 @@
  * @since 1.0.0
  */
 
+
+
+const PROJECT_ID_LSKEY = "dgw_project_id"
+const QUEST_ID_LSKEY = "dgw_quest_id"
+const QUEST_DESC_LSKEY = "dgw_quest_desc"
+const QUEST_SCORE_LSKEY = "dgw_quest_current_score"
+const QUEST_LEVEL_LSKEY = "dgw_quest_current_level"
+const QUEST_WIN_STATUS_LSKEY = "dgw_quest_win_status"
+
+
+
+
 /**
  *
  *
@@ -20,9 +32,10 @@ function runWinCondistions() {
  *
  * @since 1.0.0
  */
-function updateScore(add = 1) {
-    currentScore = Number(currentScore + add)
-}
+// FIXME: remove, we update from sever based of sent tracking event
+// function updateScore(add = 1) {
+//     currentScore = Number(currentScore + add)
+// }
 
 /**
  * Check current work level
@@ -30,7 +43,7 @@ function updateScore(add = 1) {
  * @since 1.0.0
  */
 function checkNextLevel() {
-    console.log("Checking level upgrade!");
+    // console.log("Checking level upgrade!");
 
     const scoreThresholds = [0, 700, 1400, 3900, 9000, 20000, 45000, 100000, 230000, 600000];
     let currentLevel = 1;
