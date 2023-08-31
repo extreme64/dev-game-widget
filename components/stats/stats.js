@@ -8,10 +8,16 @@ const stats = (function () {
             <button id="submit-btn" class="widget__stats-button-save">Save</button>
         </div>
         <div class="widget__work">
-        <div>🔖</div>
-            <h3 class="widget__work-desciption widget__stats-item">Some work task info text.</h3>
-            <p class="widget__work-level widget__stats-item">4</p>
-            <p class="widget__work-score widget__stats-item">4000</p>
+            <div>🔖</div>
+            <div>
+                <h3 class="widget__work-desciption widget__stats-item">Some work task info text.</h3>
+            </div>
+            <div>
+                <label for="level">LEVEL</lable><p name="score" class="widget__work-level widget__stats-item">4</p>
+            </div>
+            <div>
+                <label for="score">SCORE</lable><p name="level" class="widget__work-score widget__stats-item">4000</p>
+            </div>
         </div>
         <button id="reset-btn" class="widget__stats-button widget__stats-button-reset">Reset</button>
     </div>`
@@ -23,7 +29,7 @@ const stats = (function () {
 
 
     const updateNodeInnerText = (nodeSElectore, textValue) => {
-        const node = document.querySelector(`${nodeSElectore}`)
+        const node = document.querySelector(nodeSElectore)
         if (!node) return false
         node.innerHTML = textValue
         return true
@@ -31,15 +37,15 @@ const stats = (function () {
 
     const showNewQuestForm = (shouldShow) => {
         
-        const workForm = document.getElementById('new-work-form');
-        const workInfo = document.querySelector(QUEST_INFO_EL_SELECT)
+        const newQuest = document.getElementById('new-work-form');
+        const questInfo = document.querySelector(QUEST_INFO_EL_SELECT)
 
         if (shouldShow) {
-            workForm.style.display = 'none';
-            workInfo.style.display = 'grid';
+            newQuest.style.display = 'grid';
+            questInfo.style.display = 'none';
         }else {
-            workForm.style.display = 'flex';
-            workInfo.style.display = 'none';
+            questInfo.style.display = 'flex';
+            newQuest.style.display = 'none';
         }
     }
 

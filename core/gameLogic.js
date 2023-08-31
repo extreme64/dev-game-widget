@@ -1,10 +1,3 @@
-/**
- * Checks if the currentLevel is equal to the SUCCESS_LEVEL
- * 
- * @since 1.0.0
- */
-
-
 
 const PROJECT_ID_LSKEY = "dgw_project_id"
 const QUEST_ID_LSKEY = "dgw_quest_id"
@@ -14,12 +7,12 @@ const QUEST_LEVEL_LSKEY = "dgw_quest_current_level"
 const QUEST_WIN_STATUS_LSKEY = "dgw_quest_win_status"
 
 
-
-
 /**
- *
- *
+ * Checks if the currentLevel is equal to the SUCCESS_LEVEL
+ * 
+ * @since 1.0.0
  */
+// TODO: Check local or ask server ?!
 function runWinCondistions() {
     if (currentLevel === SUCCESS_LEVEL) {
         isDallyGameWon = true
@@ -61,12 +54,12 @@ function checkNextLevel() {
         }
     }
 
-    if (currentScore !== Number(getFromLocal('dgw_current_score'))) {
-        saveToLocal('dgw_current_score', currentScore)
+    if (currentScore !== Number(getFromLocal(stats.QUEST_SCORE_LSKEY))) {
+        saveToLocal(stats.QUEST_SCORE_LSKEY, currentScore)
     }
 
-    if (currentLevel !== Number(getFromLocal('dgw_current_level'))) {
-        saveToLocal('dgw_current_level', currentLevel);
+    if (currentLevel !== Number(getFromLocal(stats.QUEST_LEVEL_LSKEY))) {
+        saveToLocal(stats.QUEST_LEVEL_LSKEY, currentLevel);
         console.log("New level:", `${currentLevel}`);
 
         // Show award

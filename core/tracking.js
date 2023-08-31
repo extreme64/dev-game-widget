@@ -44,7 +44,7 @@ const tracking = (function () {
 
         // TODO: Add on quest create, to local trg.
         // TODO: handle net::ERR_CONNECTION_REFUSED
-        let questId = localStorage.getItem('dgw_quest_id') 
+        let questId = localStorage.getItem(QUEST_ID_LSKEY) 
         let token = localStorage.getItem('rlgin')
 
         data = {
@@ -63,9 +63,12 @@ const tracking = (function () {
         .then(data => {
             console.log('Events sent successfully:', data);
 
-
-
-
+            const scoreToUpdateTo = data.message.newScore
+            const levelToUpdateTo = data.message.newLevel
+            localStorage.setItem(stats.QUEST_SCORE_LSKEY, scoreToUpdateTo)
+            localStorage.setItem(stats.QUEST_LEVEL_LSKEY, levelToUpdateTo)
+            stats.updateNodeInnerText(stats.QUEST_SCORE_EL_SELECT, scoreToUpdateTo)
+            stats.updateNodeInnerText(stats.QUEST_LEVEL_EL_SELECT, levelToUpdateTo)
 
             capturedEvents = []
         })

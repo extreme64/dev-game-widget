@@ -66,6 +66,7 @@ let currentScore = 0
 let currentLevel = 1
 
 
+
 let inetrvalIdCheckNextLevel
 
 let inetrvalIdFormModal
@@ -76,6 +77,7 @@ let isDallyGameWon = false
 let modalContainer
 
 let modal
+let userEl
 let workForm
 let submitBtn
 let resetBtn
@@ -103,8 +105,8 @@ function resetStats() {
   currentScore = 0
   isDallyGameWon = false
 
-  saveToLocal('dgw_current_level', currentLevel)
-  saveToLocal('dgw_current_score', currentScore)
+  saveToLocal('dgw_quest_current_score', currentScore)
+  saveToLocal('dgw_quest_current_level', currentLevel)
 }
 
 
@@ -119,6 +121,9 @@ function resetStats() {
   document.body.appendChild(modalContainer);
 
   modal = document.getElementById('dev-game-modal');
+  
+  userEl = document.querySelector('[data-ui="user"]');
+
   workForm = document.getElementById('new-work-form');
   submitBtn = document.getElementById('submit-btn');
   resetBtn = document.getElementById('reset-btn');
@@ -132,50 +137,104 @@ function resetStats() {
 
   abilites = document.querySelector("[data-abilities]")
 
-  const savedScore = getFromLocal('dgw_current_score')
-  if (savedScore === null) {
-    saveToLocal('dgw_current_score', currentScore)
-  }
-  else {
-    let local = Number(getFromLocal('dgw_current_score'))
-    updateScore(local + 35)
+  // localStorage.removeItem('rlgin')                
+  localStorage.setItem('name', 'mastg')
+  localStorage.setItem('email', 'adam.gicevic@gmail.com')
+  user.onReady(userEl)
+  user.handleFormDisplay((localStorage.getItem('rlgin')) ? true : false)
 
-    // If var in local set hide form
-    workForm.style.display = 'none';
 
-    // Show work info
-    workInfo.style.display = 'grid';
-    workDesc.innerText = getFromLocal('dgw_desc');
-    workLevel.innerText = '🆙 LEVEL ' + getFromLocal('dgw_current_level');
-    workScore.innerText = '🎮 ' + getFromLocal('dgw_current_score');
-  }
+
+  stats.showNewQuestForm(false)
+  // if (savedScore === null) {
+  //   saveToLocal('dgw_current_score', currentScore)
+  // }
+  // else {
+  //   let local = Number(getFromLocal('dgw_current_score'))
+  //   // updateScore(local + 35)
+
+  //   // If var in local set hide form
+  //   workForm.style.display = 'none';
+
+  //   // Show work info
+  //   workInfo.style.display = 'grid';
+  //   workDesc.innerText = getFromLocal('dgw_desc');
+  //   workLevel.innerText = '🆙 LEVEL ' + getFromLocal('dgw_current_level');
+  //   workScore.innerText = '🎮 ' + getFromLocal('dgw_current_score');
+  // }
 
 
   // Show new work form
   resetBtn.addEventListener('click', (e) => {
-
+    
     if(workForm.style.display === 'flex'){
-      workInfo.style.display = 'grid';
-      workForm.style.display = 'none';
       e.target.innerText = "Reset"
+      stats.showNewQuestForm(true)
     } else {
       workDescription.value = ''
-      workInfo.style.display = 'none';
-      workForm.style.display = 'flex';
       e.target.innerText = "Cancel"
+      stats.showNewQuestForm(false)
     }
   });
 
   // Submit new work
-  submitBtn.addEventListener('click', () => {
+  submitBtn.addEventListener('click', async () => {
+    
+    const projectId = 1;
+    const token = localStorage.getItem('rlgin')
     const description = workDescription.value;
-    // Handle the daily description
-    saveToLocal('dgw_desc', description)
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer ${token}`);
 
-    workForm.style.display = 'none';
+    let requestBodydata = {
+      description: description
+    }
 
-    // New desc new daily goal. Reset game.
-    resetStats()
+    try {
+
+      let response = await fetch(`http://localhost:8000/api/project/${projectId}/quests`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(requestBodydata)
+      });
+
+      const data = await response.json();
+      const resp = data.message
+
+      if (response.ok) {
+
+        localStorage.setItem(PROJECT_ID_LSKEY,        resp.project.id)
+        localStorage.setItem(QUEST_ID_LSKEY,          resp.quest.id)
+        localStorage.setItem(QUEST_DESC_LSKEY,        resp.quest.name)
+        localStorage.setItem(QUEST_SCORE_LSKEY,       resp.quest.newScore)
+        localStorage.setItem(QUEST_LEVEL_LSKEY,       resp.quest.newLevel)
+        localStorage.setItem(QUEST_WIN_STATUS_LSKEY,  resp.quest.winStatus)
+
+
+        stats.updateNodeInnerText(stats.QUEST_DESC_EL_SELECT, localStorage.getItem(QUEST_DESC_LSKEY))
+        stats.updateNodeInnerText(stats.QUEST_SCORE_EL_SELECT, localStorage.getItem(QUEST_SCORE_LSKEY))
+        stats.updateNodeInnerText(stats.QUEST_LEVEL_EL_SELECT, localStorage.getItem(QUEST_LEVEL_LSKEY))
+
+        stats.showNewQuestForm(false)
+
+        // TODO: resetStats() - Set starting values on server.
+        resetStats()
+
+      } else {
+        console.error('Error on create quest attempt!', response);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+    finally {
+      // ::
+    }
+
+    // :: No connection, 'off-line' fallback
+    // saveToLocal('dgw_desc', description)
+    // workForm.style.display = 'none';
+    // resetStats()
   });
 
   switchBtn.addEventListener('click', () => {
@@ -186,24 +245,29 @@ function resetStats() {
   modal.style.display = 'none';
 
 
+  // FIXME: remove me!
   // Update score on mouse move
-  window.addEventListener('mousemove', () => {
-    // For each load reword is 1
-    updateScore(0.25)
-  })
+  // window.addEventListener('mousemove', () => {
+  //   // For each load reword is 1
+  //   updateScore(0.25)
+  // })
 
   window.onerror = function (message, source, lineno, colno, error) {
     // Log or handle the error here
     console.info('JavaScript Error:', message);
-    // FIXME: update on error, local is NULL
+    // FIXME: Update on error, local is NULL
     // updateScore(local + 15)
 
     // You can also send the error information to a server for tracking or analysis
     // sendErrorToServer(message, source, lineno, colno, error);
   };
 
-  // Set abilities
+  // Set Abilities
   AbilitiesModule.init(abilites.children)
+
+  // Set Tracking
+  tracking.onReady(document)
+
 
   RunAllTests.init(modalContainer)
 
@@ -215,6 +279,10 @@ function resetStats() {
 // Fully loaded
 window.addEventListener('load', function () {
   console.log('Page is fully loaded!');
+
+  setInterval(function () {
+    tracking.sendEventsToAPI();
+  }, 10000); // Adjust the time period as needed
 });
 
 // ----------------------------------------------------------------------------------
