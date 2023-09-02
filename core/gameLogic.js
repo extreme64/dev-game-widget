@@ -4,6 +4,7 @@ const QUEST_ID_LSKEY = "dgw_quest_id"
 const QUEST_DESC_LSKEY = "dgw_quest_desc"
 const QUEST_SCORE_LSKEY = "dgw_quest_current_score"
 const QUEST_LEVEL_LSKEY = "dgw_quest_current_level"
+const QUEST_ABILITIES_LSKEY = "dgw_quest_abilities"
 const QUEST_WIN_STATUS_LSKEY = "dgw_quest_win_status"
 
 
@@ -19,16 +20,6 @@ function runWinCondistions() {
         alert("!!! Dev. Game Win !!!")
     }
 }
-
-/**
- * Updates the currentScore variable
- *
- * @since 1.0.0
- */
-// FIXME: remove, we update from sever based of sent tracking event
-// function updateScore(add = 1) {
-//     currentScore = Number(currentScore + add)
-// }
 
 /**
  * Check current work level
@@ -60,8 +51,7 @@ function checkNextLevel() {
 
     if (currentLevel !== Number(getFromLocal(stats.QUEST_LEVEL_LSKEY))) {
         saveToLocal(stats.QUEST_LEVEL_LSKEY, currentLevel);
-        console.log("New level:", `${currentLevel}`);
-
+       
         // Show award
         Badges.showAward(currentLevel)
     }
