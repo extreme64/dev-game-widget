@@ -61,12 +61,14 @@ const tracking = (function () {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Events sent successfully:', data);
 
             const scoreToUpdateTo = data.message.newScore
             const levelToUpdateTo = data.message.newLevel
-            localStorage.setItem(stats.QUEST_SCORE_LSKEY, scoreToUpdateTo)
-            localStorage.setItem(stats.QUEST_LEVEL_LSKEY, levelToUpdateTo)
+            const abilitiesToUpdateTo = data.message.abilitiesUsed
+            localStorage.setItem(QUEST_SCORE_LSKEY, scoreToUpdateTo)
+            localStorage.setItem(QUEST_LEVEL_LSKEY, levelToUpdateTo)
+            localStorage.setItem(QUEST_ABILITIES_LSKEY, abilitiesToUpdateTo)
+
             stats.updateNodeInnerText(stats.QUEST_SCORE_EL_SELECT, scoreToUpdateTo)
             stats.updateNodeInnerText(stats.QUEST_LEVEL_EL_SELECT, levelToUpdateTo)
 
