@@ -50,6 +50,15 @@ const inetrvalFormModal = 15000
  */
 const SUCCESS_LEVEL = 5
 
+
+// const PROJECT_ID_LSKEY = "dgw_project_id"
+// const QUEST_ID_LSKEY = "dgw_quest_id"
+// const QUEST_DESC_LSKEY = "dgw_quest_desc"
+// const QUEST_SCORE_LSKEY = "dgw_quest_current_score"
+// const QUEST_LEVEL_LSKEY = "dgw_quest_current_level"
+// const QUEST_ABILITIES_LSKEY = "dgw_quest_abilities"
+// const QUEST_WIN_STATUS_LSKEY = "dgw_quest_win_status"
+
 /**
  * The current score of the game.
  * 
@@ -116,6 +125,12 @@ function resetStats() {
 (function () {
   console.log('Page is ready!');
 
+  
+  // localStorage.removeItem('dgw_quest_winStatus')
+  // localStorage.removeItem('undefined')
+  // localStorage.removeItem('dgw_quest_winStatus')
+  // console.log(localStorage);
+
   modalContainer = document.createElement('div');
   modalContainer.innerHTML = AppView.layout;
   document.body.appendChild(modalContainer);
@@ -136,8 +151,7 @@ function resetStats() {
   workScore = document.querySelector(".widget__work-score")
 
   abilites = document.querySelector("[data-abilities]")
-
-  // localStorage.removeItem('rlgin')                
+              
   localStorage.setItem('name', 'mastg')
   localStorage.setItem('email', 'adam.gicevic@gmail.com')
   user.onReady(userEl)
@@ -263,7 +277,7 @@ function resetStats() {
   };
 
   // Set Abilities
-  AbilitiesModule.init(abilites.children)
+  AbilitiesModule.onReady(abilites.children)
 
   // Set Tracking
   tracking.onReady(document)
@@ -279,6 +293,8 @@ function resetStats() {
 // Fully loaded
 window.addEventListener('load', function () {
   console.log('Page is fully loaded!');
+
+  stats.onReady()
 
   setInterval(function () {
     tracking.sendEventsToAPI();
