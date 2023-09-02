@@ -27,6 +27,11 @@ const stats = (function () {
     const QUEST_SCORE_EL_SELECT = ".widget__work-score"
     const QUEST_LEVEL_EL_SELECT = ".widget__work-level"
 
+    const onReady = (() => {
+        updateNodeInnerText(QUEST_DESC_EL_SELECT, localStorage.getItem(QUEST_DESC_LSKEY))
+        updateNodeInnerText(QUEST_SCORE_EL_SELECT, localStorage.getItem(QUEST_SCORE_LSKEY))
+        updateNodeInnerText(QUEST_LEVEL_EL_SELECT, localStorage.getItem(QUEST_LEVEL_LSKEY))
+    })
 
     const updateNodeInnerText = (nodeSElectore, textValue) => {
         const node = document.querySelector(nodeSElectore)
@@ -74,6 +79,7 @@ const stats = (function () {
         QUEST_DESC_EL_SELECT,
         QUEST_SCORE_EL_SELECT,
         QUEST_LEVEL_EL_SELECT,
+        onReady,
         updateNodeInnerText,
         showNewQuestForm,
     }
