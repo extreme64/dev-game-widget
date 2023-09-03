@@ -305,7 +305,7 @@ window.addEventListener('load', function () {
 
 
 // Set up the interval to run the checkNextLevel function
-inetrvalIdCheckNextLevel = setInterval(checkNextLevel, intervalCheckNextLevel);
+// inetrvalIdCheckNextLevel = setInterval(checkNextLevel, intervalCheckNextLevel);
 
 
 // Hide modal after 10 seconds
