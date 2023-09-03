@@ -15,6 +15,7 @@ const AbilitiesModule = (function () {
             </ul>
         </div>`;
 
+    // FIXME: ABILITES_DICTIONARY from server. Info on one place, and if changed it can be insta reflected in app.
     let abilities = [
         {
             id: 1,
@@ -102,10 +103,9 @@ const AbilitiesModule = (function () {
     async function abilityClick(abilityId, event, listener) {
         if (typeof abilities === 'undefined') return;
 
-        const projectId = 1;
+        const projectId = 1; 
+        const abilFoundAt = abilities.findIndex((element) => Number(element.id) === Number(abilityId));
 
-        // If the ability is already used, return
-        if (abilities[abilityId].isUsed) return;
 
         let questId = localStorage.getItem(QUEST_ID_LSKEY)
         let token = localStorage.getItem('rlgin')
@@ -119,24 +119,16 @@ const AbilitiesModule = (function () {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Events sent successfully:', data);
 
-                // Remove the listener for this ability
                 event.target.removeEventListener('click', listener);
-
-                // Style btn. as 'spent'
                 event.target.classList.add('used');
 
                 // Update the isUsed status of the ability
-                abilities[abilityId].isUsed = true;
+                abilities[abilFoundAt].isUsed = true;
 
-                // FIXME: update score centrilized else where
-                const abilitiesToUpdateTo = data.message.abilitiesUsed
-                const scoreToUpdateTo = data.message.newScore
-                const levelToUpdateTo = data.message.newLevel
-                localStorage.setItem(QUEST_ABILITIES_LSKEY, abilitiesToUpdateTo)
-                localStorage.setItem(QUEST_SCORE_LSKEY, scoreToUpdateTo)
-                localStorage.setItem(QUEST_LEVEL_LSKEY, levelToUpdateTo)
+                localStorage.setItem(QUEST_ABILITIES_LSKEY, data.message.abilitiesUsed)
+                localStorage.setItem(QUEST_SCORE_LSKEY, data.message.newScore)
+                localStorage.setItem(QUEST_LEVEL_LSKEY, data.message.newLevel)
             })
             .catch(error => {
                 console.error('Error sending events:', error);
@@ -147,11 +139,70 @@ const AbilitiesModule = (function () {
 
     }
 
+
+    const updateAbilityButtons = ((data) => {
+        
+        let abilsStr = data
+        let all = []
+
+        all = document.querySelectorAll(`.widget__abilities li[data-id]`)
+        
+        if (typeof all === 'undefined') { return false }
+        
+        all.forEach((ab) => {
+            ab.classList.remove('used');
+        })
+        
+        if (abilsStr) {
+
+            const abilsSavedIdsRaw = abilsStr.split(';');
+            let abilsSavedIdsClean = []
+            abilsSavedIdsRaw.forEach((ab) => {
+                if (ab !== '') {
+                    abilsSavedIdsClean.push(Number(ab))
+                }
+            })
+
+            if (!Array.isArray(abilsSavedIdsClean) || abilsSavedIdsClean.length === 0) {
+                return false
+            }
+        
+            all.forEach((ab)=>{
+
+                let found = abilsSavedIdsClean.includes(Number(ab.dataset.id));
+                if (found){
+                    ab.classList.add('used');
+                }
+            })
+        }
+     
+
+        // let abilsStr = data
+        // abilsSavedIds = abilsStr.split(';');
+        // abilsSavedIds.forEach((abil, i) => {
+        //     let item = undefined
+        //     item = document.querySelector(`.widget__abilities [data-id="${abil}"]`)
+        //     if (item !== null && item !== undefined) {
+        //         item.classList.add('used');
+        //     }
+        // })
+
+
+
+        // event.target.removeEventListener('click', listener);
+
+        // event.target.classList.add('used');
+
+        // abilities[abilFoundAt].isUsed = true;
+
+    })
+
     return {
-        abilityClick: abilityClick,
-        setNodesData: setNodesData,
         html: html,
-        onReady: onReady
+        onReady: onReady,
+        setNodesData: setNodesData,
+        abilityClick: abilityClick,
+        updateAbilityButtons: updateAbilityButtons
     };
     
 })();
