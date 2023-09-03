@@ -65,6 +65,9 @@ const tracking = (function () {
             const scoreToUpdateTo = data.message.newScore
             const levelToUpdateTo = data.message.newLevel
             const abilitiesToUpdateTo = data.message.abilitiesUsed
+
+            AbilitiesModule.updateAbilityButtons(abilitiesToUpdateTo)
+
             localStorage.setItem(QUEST_SCORE_LSKEY, scoreToUpdateTo)
             localStorage.setItem(QUEST_LEVEL_LSKEY, levelToUpdateTo)
             localStorage.setItem(QUEST_ABILITIES_LSKEY, abilitiesToUpdateTo)
@@ -72,7 +75,12 @@ const tracking = (function () {
             stats.updateNodeInnerText(stats.QUEST_SCORE_EL_SELECT, scoreToUpdateTo)
             stats.updateNodeInnerText(stats.QUEST_LEVEL_EL_SELECT, levelToUpdateTo)
 
+            if (Number(levelToUpdateTo) > Number(localStorage.getItem(QUEST_LEVEL_LSKEY))) {
+                Badges.showAward(levelToUpdateTo)
+            }
+            
             capturedEvents = []
+            
         })
         .catch(error => {
             console.error('Error sending events:', error);
