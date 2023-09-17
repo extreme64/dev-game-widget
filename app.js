@@ -158,8 +158,9 @@ function resetStats() {
   user.handleFormDisplay((localStorage.getItem('rlgin')) ? true : false)
 
 
-
+  // FIXME: Check if no quest active 
   stats.showNewQuestForm(false)
+  
   // if (savedScore === null) {
   //   saveToLocal('dgw_current_score', currentScore)
   // }
@@ -181,13 +182,15 @@ function resetStats() {
   // Show new work form
   resetBtn.addEventListener('click', (e) => {
     
-    if(workForm.style.display === 'flex'){
+    if(workForm.style.display === 'none'){
       e.target.innerText = "Reset"
       stats.showNewQuestForm(true)
+      AbilitiesModule.toggleShow(false)
     } else {
       workDescription.value = ''
       e.target.innerText = "Cancel"
       stats.showNewQuestForm(false)
+      AbilitiesModule.toggleShow(true)
     }
   });
 
@@ -231,7 +234,8 @@ function resetStats() {
         stats.updateNodeInnerText(stats.QUEST_LEVEL_EL_SELECT, localStorage.getItem(QUEST_LEVEL_LSKEY))
 
         stats.showNewQuestForm(false)
-
+        AbilitiesModule.toggleShow(true)
+        
         // TODO: resetStats() - Set starting values on server.
         resetStats()
 

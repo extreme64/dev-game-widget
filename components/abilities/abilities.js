@@ -79,10 +79,7 @@ const AbilitiesModule = (function () {
 
     function onReady(abilitesChildren) {
         const heroType = 1 //TODO: Replace with select dropdown on quest create.
-        
         acquireAbilitiesInfo(heroType);
-        
-       
     }
 
     function setNodesData(nodeList) {
@@ -132,7 +129,7 @@ const AbilitiesModule = (function () {
                 abilitiesFromServer = data.message.abilitiesObj
                 if (typeof abilitiesFromServer === 'undefined') return false;
 
-                let abilitesChildren = document.querySelector("[data-abilities]").children
+                let abilitesChildren = document.querySelectorAll("[data-abilities] > .widget__abilities-item")
                 setAbilitiesDataServer(abilitesChildren)
 
                 let abilsStr = localStorage.getItem(QUEST_ABILITIES_LSKEY)
@@ -141,7 +138,9 @@ const AbilitiesModule = (function () {
                     let item = undefined
                     item = document.querySelector(`.widget__abilities [data-id="${abil}"]`)
                     if (item !== null && item !== undefined) {
-                        item.classList.add('used');
+                        // item.classList.add('used');
+
+                        setUsed(item, true)
                     }
                 })
 
@@ -168,6 +167,8 @@ const AbilitiesModule = (function () {
     async function abilityClick(abilityId, event, listener) {
         if (typeof abilities === 'undefined') return;
 
+        setUsed(event.target, true)
+
         const projectId = 1; 
         const abilFoundAt = abilities.findIndex((element) => Number(element.id) === Number(abilityId));
 
@@ -188,8 +189,10 @@ const AbilitiesModule = (function () {
             .then(data => {
 
                 event.target.removeEventListener('click', listener);
-                event.target.classList.add('used');
 
+                setUsed(event.target, true)
+
+                console.log(event.target.nodeName);
                 // Update the isUsed status of the ability
                 abilities[abilFoundAt].isUsed = true;
 
@@ -204,18 +207,20 @@ const AbilitiesModule = (function () {
     }
 
 
+    /**
+     * updateAbilityButtons
+     *
+     * @var [type]
+     */
     const updateAbilityButtons = ((data) => {
         
         let abilsStr = data
         let all = []
 
-        all = document.querySelectorAll(`.widget__abilities li[data-id]`)
-        
+        all = document.querySelectorAll(`.widget__abilities > ul > li[data-id]`)
         if (typeof all === 'undefined') { return false }
         
-        all.forEach((ab) => {
-            ab.classList.remove('used');
-        })
+        resetAbilities(all)
         
         if (abilsStr) {
 
@@ -235,19 +240,86 @@ const AbilitiesModule = (function () {
 
                 let found = abilsSavedIdsClean.includes(Number(ab.dataset.id));
                 if (found){
-                    ab.classList.add('used');
+                    setUsed(ab, true)
+                    // ab.classList.add('used');
                 }
             })
         }
 
     })
 
+    /**
+     * [Description for setUsed]
+     *
+     * @param mixed el
+     * @param mixed isUSed
+     * 
+     * @return [type]
+     * 
+     */
+    function setUsed(el, isUSed) {
+
+        let reTarget = el
+
+        if(el.nodeName === 'IMG') {
+            
+            if (!el.parentNode) {
+                return false
+            }
+
+            reTarget = el.parentNode
+        }
+
+        if (isUSed) {
+            reTarget.classList.add('used');
+        }else {
+            reTarget.classList.remove('used');
+        }
+    }
+
+
+    /**
+     * [Description for toggleShow]
+     *
+     * @param mixed shouldShow
+     * 
+     * @return [type]
+     * 
+     */
+    function toggleShow(shouldShow) {
+
+        abilitiesListEl = document.querySelector(`.widget__abilities-list`)
+        if (shouldShow === true) { 
+            abilitiesListEl.style.contentVisibility = 'initial' 
+        } else {
+            abilitiesListEl.style.contentVisibility = 'hidden';
+        }
+    }
+
+    /**
+     * [Description for resetAbilities]
+     *
+     * @param mixed els
+     * 
+     * @return [type]
+     * 
+     */
+    function resetAbilities(els) {
+
+        els.forEach((ab) => {
+            ab.classList.remove('used');
+        })
+    }
+
+
     return {
         html: html,
         onReady: onReady,
         setNodesData: setNodesData,
         abilityClick: abilityClick,
-        updateAbilityButtons: updateAbilityButtons
+        updateAbilityButtons: updateAbilityButtons,
+        setUsed: setUsed,
+        toggleShow: toggleShow
     };
     
 })();

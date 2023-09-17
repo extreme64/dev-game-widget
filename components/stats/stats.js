@@ -40,12 +40,12 @@ const stats = (function () {
         return true
     }
 
-    const showNewQuestForm = (shouldShow) => {
+    function showNewQuestForm(shouldShow){
 
         const newQuest = document.getElementById('new-work-form');
         const questInfo = document.querySelector(QUEST_INFO_EL_SELECT)
 
-        if (shouldShow === true) {
+        if (shouldShow) {
             newQuest.style.display = 'grid';
             questInfo.style.display = 'none';
         }else {
@@ -53,24 +53,6 @@ const stats = (function () {
             newQuest.style.display = 'none';
         }
     }
-
-    // const savedScore = getFromLocal('dgw_current_score')
-    // if (savedScore === null) {
-    //     saveToLocal('dgw_current_score', currentScore)
-    // }
-    // else {
-    //     let local = Number(getFromLocal('dgw_current_score'))
-    //     updateScore(local + 35)
-
-    //     // If var in local set hide form
-    //     workForm.style.display = 'none';
-
-    //     // Show work info
-    //     workInfo.style.display = 'grid';
-    //     workDesc.innerText = getFromLocal('dgw_desc');
-    //     workLevel.innerText = '🆙 LEVEL ' + getFromLocal('dgw_current_level');
-    //     workScore.innerText = '🎮 ' + getFromLocal('dgw_current_score');
-    // }
 
 
     return {

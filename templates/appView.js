@@ -2,7 +2,6 @@
 const AppView = (() => {
 
   // FIXME: Stop apps CSS impact our extension markup, add all declarations that are important to us.
-  // TODO: All html into comp. and add js/events to it
   const widgetHtml = `
     <main id="wgw-main" class="wgw-main">
       
