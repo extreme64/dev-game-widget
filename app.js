@@ -235,7 +235,7 @@ function resetStats() {
 
         stats.showNewQuestForm(false)
         AbilitiesModule.toggleShow(true)
-        
+
         // TODO: resetStats() - Set starting values on server.
         resetStats()
 
@@ -244,8 +244,7 @@ function resetStats() {
       }
     } catch (error) {
       console.error('Error:', error);
-    }
-    finally {
+    } finally {
       // ::
     }
 
@@ -263,12 +262,6 @@ function resetStats() {
   modal.style.display = 'none';
 
 
-  // FIXME: remove me!
-  // Update score on mouse move
-  // window.addEventListener('mousemove', () => {
-  //   // For each load reword is 1
-  //   updateScore(0.25)
-  // })
 
   window.onerror = function (message, source, lineno, colno, error) {
     // Log or handle the error here
