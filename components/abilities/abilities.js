@@ -16,6 +16,8 @@ const AbilitiesModule = (function () {
         </div>`;
 
     // FIXME: ABILITES_DICTIONARY from server. Info on one place, and if changed it can be insta reflected in app.
+    let abilitiesFromServer = []
+
     let abilities = [
         {
             id: 1,
@@ -76,20 +78,11 @@ const AbilitiesModule = (function () {
     ];
 
     function onReady(abilitesChildren) {
+        const heroType = 1 //TODO: Replace with select dropdown on quest create.
         
-        setNodesData(abilitesChildren);
+        acquireAbilitiesInfo(heroType);
         
-        let abilsStr = localStorage.getItem(QUEST_ABILITIES_LSKEY)
-        abilsSavedIds = abilsStr.split(';');
-        abilsSavedIds.forEach((abil, i) => {
-            let item = undefined
-            item = document.querySelector(`.widget__abilities [data-id="${abil}"]`)
-            if (item !== null && item !== undefined) {
-                item.classList.add('used');
-            }
-        })
-        
-        Events.setEventListeners("click", abilitesChildren, abilityClick);
+       
     }
 
     function setNodesData(nodeList) {
@@ -100,6 +93,78 @@ const AbilitiesModule = (function () {
         })
     }
 
+    function setAbilitiesDataServer(nodeList) {
+        [...nodeList].forEach((node, id) => {
+            node.dataset.id = abilitiesFromServer[id].id;
+            node.setAttribute("title", abilities[id].title);
+            // node.innerText = abilitiesFromServer[id].icon;
+            node.innerHTML = '<img src="' + abilitiesFromServer[id].img + '" class="widget__abilities-item__img" alt="ability image" />';
+        })
+    }
+
+    /**
+     * Get abilities from server for selected quest.
+     *
+     * @param Number questHeroType
+     * 
+     * @return boolean
+     * 
+     */
+    async function acquireAbilitiesInfo(questHeroType) {
+        const projectId = 1; 
+        const questId = localStorage.getItem(QUEST_ID_LSKEY)
+        const token = localStorage.getItem('rlgin')
+
+        let data = {
+            questHeroType: questHeroType
+        }
+        await fetch(`http://localhost:8000/api/project/${projectId}/quests/id/${questId}/abilities`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => {
+
+                abilitiesFromServer = data.message.abilitiesObj
+                if (typeof abilitiesFromServer === 'undefined') return false;
+
+                let abilitesChildren = document.querySelector("[data-abilities]").children
+                setAbilitiesDataServer(abilitesChildren)
+
+                let abilsStr = localStorage.getItem(QUEST_ABILITIES_LSKEY)
+                abilsSavedIds = abilsStr.split(';');
+                abilsSavedIds.forEach((abil, i) => {
+                    let item = undefined
+                    item = document.querySelector(`.widget__abilities [data-id="${abil}"]`)
+                    if (item !== null && item !== undefined) {
+                        item.classList.add('used');
+                    }
+                })
+
+                Events.setEventListeners("click", abilitesChildren, abilityClick);
+
+                return true
+            })
+            .catch(error => {
+                console.error('Error getting abilities info:', error);
+                return false
+            });
+    }
+
+    /**
+     * [Description for abilityClick]
+     *
+     * @param mixed abilityId
+     * @param mixed event
+     * @param mixed listener
+     * 
+     * @return [type]
+     * 
+     */
     async function abilityClick(abilityId, event, listener) {
         if (typeof abilities === 'undefined') return;
 
@@ -107,10 +172,12 @@ const AbilitiesModule = (function () {
         const abilFoundAt = abilities.findIndex((element) => Number(element.id) === Number(abilityId));
 
 
-        let questId = localStorage.getItem(QUEST_ID_LSKEY)
-        let token = localStorage.getItem('rlgin')
+        const questId = localStorage.getItem(QUEST_ID_LSKEY)
+        const token = localStorage.getItem('rlgin')
         
-        await fetch(`http://localhost:8000/api/project/${projectId}/quests/id/${questId}/ability/${abilityId}`, {
+        const urlAbilityIdVal = Number(abilityId)
+
+        await fetch(`http://localhost:8000/api/project/${projectId}/quests/id/${questId}/ability/${urlAbilityIdVal}`, {
             method: 'PATCH',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -133,9 +200,6 @@ const AbilitiesModule = (function () {
             .catch(error => {
                 console.error('Error sending events:', error);
             });
-
-        // Update score
-        // currentScore += abilities[abilityId].score;
 
     }
 
@@ -175,25 +239,6 @@ const AbilitiesModule = (function () {
                 }
             })
         }
-     
-
-        // let abilsStr = data
-        // abilsSavedIds = abilsStr.split(';');
-        // abilsSavedIds.forEach((abil, i) => {
-        //     let item = undefined
-        //     item = document.querySelector(`.widget__abilities [data-id="${abil}"]`)
-        //     if (item !== null && item !== undefined) {
-        //         item.classList.add('used');
-        //     }
-        // })
-
-
-
-        // event.target.removeEventListener('click', listener);
-
-        // event.target.classList.add('used');
-
-        // abilities[abilFoundAt].isUsed = true;
 
     })
 
