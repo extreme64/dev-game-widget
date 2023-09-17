@@ -4,27 +4,27 @@ const Badges = (function () {
     const level = `<div id="badges-levels" class="badges badges--level">
         <div class="badges__background sprite">
             <span class="badges__test"></span>
-            <span class="badges__download">
+            <!-- <span class="badges__download">
                 <button class="badges__button">Save badge</button>
-            </span>
+            </span> -->
         </div>
     </div>`;
 
     const suggestion = `<div id="badges-suggestion" class="badges badges--suggestion">
         <div class="badges__background sprite">
             <span class="badges__test"></span>
-            <span class="badges__download">
+            <!-- <span class="badges__download">
                 <button class="badges__button">Save badge</button>
-            </span>
+            </span> -->
         </div>
     </div>`;
 
     const unlocked = `<div id="badges-unlocked" class="badges badges--unlocked">
         <div class="badges__background sprite">
             <span class="badges__test"></span>
-            <span class="badges__download">
+            <!-- <span class="badges__download">
                 <button class="badges__button">Save badge</button>
-            </span>
+            </span> -->
         </div>
     </div>`;
 
