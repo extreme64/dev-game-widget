@@ -58,39 +58,84 @@
     animation-iteration-count: 1;
     animation-play-state: paused;
     /* --sprite-background: url(images/ph-awards-badges.png); */
-    --sprite-background: url(https://www.imgbly.com/ib/98IcjWr3Xv.png)
+    /* --sprite-background: url(https://www.imgbly.com/ib/98IcjWr3Xv.png); */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
+/* TODO: Sprite for lvl 1. */
 .sprite1 {
     width: 88px;
     height: 88px;
-    background: var(--sprite-background) -396px -88px;
 }
 
 .sprite2 {
     width: 88px;
     height: 88px;
-    background: var(--sprite-background) -483px -88px;
-    animation-duration: 4.2s;
+    /* background: var(--sprite-background) -396px -88px; */
+    background-image: url(http://localhost:8000/images/badges/levels/lvl2.png);
 }
 
 .sprite3 {
-    width: 88px;
     height: 88px;
-    background: var(--sprite-background) -571px -88px;
-    animation-duration: 4.5s;
+    /* background: var(--sprite-background) -483px -88px; */
+    background-image: url(http://localhost:8000/images/badges/levels/lvl3.png);
+    animation-duration: 4.2s;
 }
 
 .sprite4 {
     width: 88px;
     height: 88px;
-    background: var(--sprite-background) -660px -88px;
-    animation-duration: 4.7s;
+    /* background: var(--sprite-background) -571px -88px; */
+    background-image: url(http://localhost:8000/images/badges/levels/lvl4.png);
+    animation-duration: 4.5s;
 }
 
 .sprite5 {
     width: 88px;
     height: 88px;
-    background: var(--sprite-background) -747px -88px;
+    /* background: var(--sprite-background) -660px -88px; */
+    background-image: url(http://localhost:8000/images/badges/levels/lvl5.png);
+    animation-duration: 4.7s;
+}
+
+.sprite6 {
+    width: 88px;
+    height: 88px;
+    /* background: var(--sprite-background) -747px -88px; */
+    background-image: url(http://localhost:8000/images/badges/levels/lvl6.png);
+    animation-duration: 5s;
+}
+
+.sprite7 {
+    width: 88px;
+    height: 88px;
+    /* background: var(--sprite-background) -747px -88px; */
+    background-image: url(http://localhost:8000/images/badges/levels/lvl7.png);
+    animation-duration: 5s;
+}
+
+.sprite8 {
+    width: 88px;
+    height: 88px;
+    /* background: var(--sprite-background) -747px -88px; */
+    background-image: url(http://localhost:8000/images/badges/levels/lvl8.png);
+    animation-duration: 5s;
+}
+
+.sprite9 {
+    width: 88px;
+    height: 88px;
+    /* background: var(--sprite-background) -747px -88px; */
+    background-image: url(http://localhost:8000/images/badges/levels/lvl9.png);
+    animation-duration: 5s;
+}
+
+.sprite10 {
+    width: 88px;
+    height: 88px;
+    /* background: var(--sprite-background) -747px -88px; */
+    background-image: url(http://localhost:8000/images/badges/levels/lvl10.png);
     animation-duration: 5s;
 }
