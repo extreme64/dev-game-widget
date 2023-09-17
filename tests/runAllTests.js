@@ -46,7 +46,16 @@ const RunAllTests = (() => {
      *
      */
     function runAll() {
-        TestBadges.checkShowBadges(getFromLocal('dgw_current_level'))
+        // TestBadges.checkShowBadges(1)
+        // TestBadges.checkShowBadges(2)
+        // TestBadges.checkShowBadges(3)
+        // TestBadges.checkShowBadges(4)
+        TestBadges.checkShowBadges(5)
+        // TestBadges.checkShowBadges(6)
+        // TestBadges.checkShowBadges(7)
+        // TestBadges.checkShowBadges(8)
+        // TestBadges.checkShowBadges(9)
+        // TestBadges.checkShowBadges(10)
     }
 
     const getTestRunTotal = (() => { return testRunTotal })

@@ -16,7 +16,7 @@ const TestBadges = (() => {
         RunAllTests.increaseTestTotal()
 
         const testResultElement = document.createElement('li');
-        testResultElement.textContent = `Show on new level : ${testStatustext}.`
+        testResultElement.textContent = `Show on new level [${currentLevel}] : ${testStatustext}.`
         
         document.querySelector(RunAllTests.badgesList).appendChild(testResultElement)
     }
