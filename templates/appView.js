@@ -26,8 +26,15 @@ const AppView = (() => {
       ${Badges.level}
     </main>`;
 
+
+  function setBackground(contextEl, url) {
+    let bgImgEl = contextEl.querySelector('#dev-game-modal')
+    bgImgEl.style.backgroundImage = `url(${url})`
+  }
+
     return {
-      layout: widgetHtml
+      layout: widgetHtml,
+      setBackground
     }
 
 })()

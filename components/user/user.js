@@ -7,7 +7,7 @@ const user = (function () {
     const html = `
         <div data-ui="user">
             <div class="widget__avatar">
-                ✨✨✨
+                <img data-ui="avatar" class="widget__avatar__image" />
             </div>
             <!-- user wrap -->
             <div class="widget__user">
@@ -29,10 +29,11 @@ const user = (function () {
     function onReady(parent){
         thisNode = parent
         logInForm = parent.querySelector('[name="loginForm"]');
+
         handleUserInfoDisplay(localStorage.getItem('name'))
         logInForm.addEventListener('submit', (e) => {
             logIn(e)
-        }) 
+        })
     }
 
     function handleFormDisplay(status) {
@@ -43,8 +44,14 @@ const user = (function () {
 
     function handleUserInfoDisplay(name="Profile name,...", email='') {
         thisNode.querySelector('[data-ui="profileLink"]').innerHTML = name
+
+
     }
 
+    function setBackground(contextEl, url) {
+        let bgImgEl = contextEl.querySelector('[data-ui="avatar"]')
+        bgImgEl.src = url
+    }
 
     const logIn = (async (e) => {
         e.preventDefault();
@@ -91,6 +98,7 @@ const user = (function () {
         onReady,
         logIn,
         handleFormDisplay,
+        setBackground,
         logInStatus
     }
 
