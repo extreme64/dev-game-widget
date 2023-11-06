@@ -87,6 +87,7 @@ let modalContainer
 
 let modal
 let userEl
+let setupEl
 let workForm
 let submitBtn
 let resetBtn
@@ -100,6 +101,8 @@ let workLevel
 let workScore
 
 let abilites
+
+let projectAttrs
 
 // ----------------------------------------------------------------------------------
 
@@ -125,11 +128,7 @@ function resetStats() {
 (function () {
   console.log('Page is ready!');
 
-  
-  // localStorage.removeItem('dgw_quest_winStatus')
-  // localStorage.removeItem('undefined')
-  // localStorage.removeItem('dgw_quest_winStatus')
-  // console.log(localStorage);
+
 
   modalContainer = document.createElement('div');
   modalContainer.innerHTML = AppView.layout;
@@ -138,6 +137,8 @@ function resetStats() {
   modal = document.getElementById('dev-game-modal');
   
   userEl = document.querySelector('[data-ui="user"]');
+
+  setupEl = document.querySelector('.widget__setup')
 
   workForm = document.getElementById('new-work-form');
   submitBtn = document.getElementById('submit-btn');
@@ -154,6 +155,34 @@ function resetStats() {
               
   localStorage.setItem('name', 'mastg')
   localStorage.setItem('email', 'adam.gicevic@gmail.com')
+
+  const getProjectAttrs = (async (e) => {
+
+    const token = localStorage.getItem('rlgin')
+
+    try {
+      // FIXME: project ID as const
+      let response = await fetch(`http://localhost:8000/api/project/1/attributes`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(data => { 
+
+          user.setBackground(userEl, data.urls.avatar_id)
+          setup.setBackground(setupEl, data.urls.terminal_id)
+          AppView.setBackground(modalContainer, data.urls.background_id)
+
+          return data.urls });
+
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  })
+  projectAttrs = getProjectAttrs()
   user.onReady(userEl)
   user.handleFormDisplay((localStorage.getItem('rlgin')) ? true : false)
 
@@ -161,23 +190,6 @@ function resetStats() {
   // FIXME: Check if no quest active 
   stats.showNewQuestForm(false)
   
-  // if (savedScore === null) {
-  //   saveToLocal('dgw_current_score', currentScore)
-  // }
-  // else {
-  //   let local = Number(getFromLocal('dgw_current_score'))
-  //   // updateScore(local + 35)
-
-  //   // If var in local set hide form
-  //   workForm.style.display = 'none';
-
-  //   // Show work info
-  //   workInfo.style.display = 'grid';
-  //   workDesc.innerText = getFromLocal('dgw_desc');
-  //   workLevel.innerText = '🆙 LEVEL ' + getFromLocal('dgw_current_level');
-  //   workScore.innerText = '🎮 ' + getFromLocal('dgw_current_score');
-  // }
-
 
   // Show new work form
   resetBtn.addEventListener('click', (e) => {
@@ -295,7 +307,7 @@ window.addEventListener('load', function () {
 
   setInterval(function () {
     tracking.sendEventsToAPI();
-  }, 10000); // Adjust the time period as needed
+  }, 8000); // Adjust the time period as needed
 });
 
 // ----------------------------------------------------------------------------------
