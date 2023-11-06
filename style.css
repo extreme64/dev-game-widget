@@ -88,19 +88,26 @@
 /* avatar styles */
 #wgw-main .widget__avatar {
     display: flex;
-    width: 100px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
     margin: 25px auto;
     justify-content: center;
-    background-image: url(https://www.imgbly.com/ib/ndGtus4842.jpg);
-        /* background-image: url(pirate-skull-with-anchor-cartoon-illustration_138676-2745.jpg); */
+    align-items: center;
+    background-color: #344B43;
+    /* background-image: url(https://www.imgbly.com/ib/ndGtus4842.jpg); */
+    /* background-image: url(pirate-skull-with-anchor-cartoon-illustration_138676-2745.jpg); */
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 100px;
+    border-radius: 50px;
     overflow: hidden;
     filter: drop-shadow(rgb(182, 125, 22) 0px 0px 19px);
     box-shadow: rgb(182 125 22) 0px 0px 0px 4px;
+}
+
+.widget__avatar__image {
+    width: 100%;
+    height: min-content;
 }
 
 /* user wrap styles */
@@ -214,7 +221,7 @@
 
 #wgw-main .widget__setup-img {
     width: 100%;
-    margin: 10px auto;
+    margin: 0px auto;
     filter: drop-shadow(0px 7px 27px #08231a);
 }
 
