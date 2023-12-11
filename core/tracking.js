@@ -51,7 +51,7 @@ const tracking = (function () {
             metrics: capturedEvents
         };
         
-        await fetch(`http://localhost:8000/api/project/${projectId}/quests/id/${questId}`, {
+        await fetch(`http://localhost:8000/api/project/${projectId}/quests/${questId}`, {
             method: 'PATCH',
             headers: {
                 'Authorization': `Bearer ${token}`,
