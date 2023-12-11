@@ -2,12 +2,6 @@
 const Badges = (function () {
 
     const level = `<div id="badges-levels" class="badges badges--level">
-        <div class="badges__background sprite">
-            <span class="badges__test"></span>
-            <!-- <span class="badges__download">
-                <button class="badges__button">Save badge</button>
-            </span> -->
-        </div>
     </div>`;
 
     const suggestion = `<div id="badges-suggestion" class="badges badges--suggestion">
@@ -28,31 +22,55 @@ const Badges = (function () {
         </div>
     </div>`;
 
+    function onReady() {
+        let badgesLevels = document.querySelector("#badges-levels");
 
+        badgesLevels.addEventListener('mouseenter', function(){
+            toggleAwards(true, badgesLevels)
+        })
+        badgesLevels.addEventListener('mouseleave', function () {
+            toggleAwards(false, badgesLevels)
+        })
+    }
 
-    const showAward = ((awardID) => {
-        const awardWrapEl = document.querySelector("#badges-levels")
-        const sprite = document.querySelector("#badges-levels .sprite")
+    const toggleAwards = ((status, el) => {
 
-        sprite.classList.add('sprite' + awardID)
+        const badgesItems = el.querySelectorAll('[data-ui="badge-item"]')
 
-        awardWrapEl.style.display = "flex"
-        sprite.style.animationPlayState = "running";
+        badgesItems.forEach(item => {
+            
+            if(item) {
+            
+                item.classList.add(
+                    (status)
+                        ? "sprite" : "sprite--compact")
+                item.classList.remove(
+                    (status)
+                        ? "sprite--compact" : "sprite")
 
-        // Self hide
-        setTimeout(() => {
-            if (typeof awardWrapEl === 'undefined' || typeof sprite === 'undefined') return
-            awardWrapEl.style.display = 'none';
-            sprite.style.animationPlayState = "paused";
-        }, 4000);
+            }
+        })
     })
 
+    const showAward = ((awardID) => {
+        
+        const awardWrapEl = document.querySelector("#badges-levels");
+
+        const levelBadge = document.createElement('div');
+        levelBadge.dataset.ui = "badge-item" 
+        levelBadge.innerHTML = '<span class="sprite__text">' + awardID + '</span>';
+        levelBadge.style.zIndex = awardID
+        levelBadge.classList.add('badges__background', 'sprite--compact', 'sprite' + awardID);
+        awardWrapEl.insertBefore(levelBadge, awardWrapEl.firstChild);
+
+    })
 
 
     return {
         showAward: showAward,
         level: level,
         suggestion: suggestion,
-        unlocked: unlocked
+        unlocked: unlocked,
+        onReady: onReady
     }
 })()

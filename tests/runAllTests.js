@@ -46,13 +46,12 @@ const RunAllTests = (() => {
      *
      */
     function runAll() {
-        // TestBadges.checkShowBadges(1)
         // TestBadges.checkShowBadges(2)
         // TestBadges.checkShowBadges(3)
         // TestBadges.checkShowBadges(4)
         TestBadges.checkShowBadges(5)
         // TestBadges.checkShowBadges(6)
-        // TestBadges.checkShowBadges(7)
+        TestBadges.checkShowBadges(7)
         // TestBadges.checkShowBadges(8)
         // TestBadges.checkShowBadges(9)
         // TestBadges.checkShowBadges(10)

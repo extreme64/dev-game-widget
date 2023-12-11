@@ -1,17 +1,20 @@
 
 /* Wrap */
-#badges-levels .badges {
+#badges-levels.badges {
     box-sizing: initial;
 }
 
-#badges-levels .badges--level {
+#badges-levels.badges--level {
     position: relative;
+    top: 25px;
+    right: 5px;
     display: flex;
+    flex-direction: column;
     border-radius: var(--border-radius);
     z-index: 9;
 }
 
-#badges-levels. badges__download {
+#badges-levels .badges__download {
     display: none;
 }
 
@@ -47,95 +50,104 @@
 
 
 /* Sprites */
-.sprite {
+#badges-levels .sprite,
+#badges-levels .sprite--compact {
     position: relative;
-    opacity: 0;
+    display: flex;
+    margin-top: 5px;
+    opacity: 1;
+    color: var(--text-color-light);
+    font-weight: 900;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: var(--color-primary-1);
     border: 2px solid var(--primary-color);
     border-radius: 20px;
-    animation-name: spawn;
+    /* animation-name: spawn; */
     animation-duration: 4s;
     animation-timing-function: ease-out;
     animation-iteration-count: 1;
     animation-play-state: paused;
-    /* --sprite-background: url(images/ph-awards-badges.png); */
-    /* --sprite-background: url(https://www.imgbly.com/ib/98IcjWr3Xv.png); */
-    background-size: contain;
+    background-size: initial;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-/* TODO: Sprite for lvl 1. */
-.sprite1 {
+#badges-levels .sprite{    
     width: 88px;
     height: 88px;
 }
 
+#badges-levels .sprite--compact {
+    width: 36px;
+    height: 36px;
+}
+
+/* TODO: Sprite for lvl 1. */
+.sprite1 {
+    background-image: url(http://localhost:8000/images/badges/levels/lvl1.png);
+    animation-duration: 8s;
+}
+
 .sprite2 {
-    width: 88px;
-    height: 88px;
     /* background: var(--sprite-background) -396px -88px; */
     background-image: url(http://localhost:8000/images/badges/levels/lvl2.png);
+    animation-duration: 8s;
 }
 
 .sprite3 {
     height: 88px;
     /* background: var(--sprite-background) -483px -88px; */
     background-image: url(http://localhost:8000/images/badges/levels/lvl3.png);
-    animation-duration: 4.2s;
+    animation-duration: 8s;
 }
 
 .sprite4 {
-    width: 88px;
-    height: 88px;
     /* background: var(--sprite-background) -571px -88px; */
     background-image: url(http://localhost:8000/images/badges/levels/lvl4.png);
-    animation-duration: 4.5s;
+    animation-duration: 8s;
 }
 
 .sprite5 {
-    width: 88px;
-    height: 88px;
     /* background: var(--sprite-background) -660px -88px; */
     background-image: url(http://localhost:8000/images/badges/levels/lvl5.png);
-    animation-duration: 4.7s;
+    animation-duration: 8s;
 }
 
 .sprite6 {
-    width: 88px;
-    height: 88px;
     /* background: var(--sprite-background) -747px -88px; */
     background-image: url(http://localhost:8000/images/badges/levels/lvl6.png);
-    animation-duration: 5s;
+    animation-duration: 8s;
 }
 
 .sprite7 {
-    width: 88px;
-    height: 88px;
     /* background: var(--sprite-background) -747px -88px; */
     background-image: url(http://localhost:8000/images/badges/levels/lvl7.png);
-    animation-duration: 5s;
+    animation-duration: 8s;
 }
 
 .sprite8 {
-    width: 88px;
-    height: 88px;
     /* background: var(--sprite-background) -747px -88px; */
     background-image: url(http://localhost:8000/images/badges/levels/lvl8.png);
-    animation-duration: 5s;
+    animation-duration: 8s;
 }
 
 .sprite9 {
-    width: 88px;
-    height: 88px;
     /* background: var(--sprite-background) -747px -88px; */
     background-image: url(http://localhost:8000/images/badges/levels/lvl9.png);
-    animation-duration: 5s;
+    animation-duration: 8s;
 }
 
 .sprite10 {
-    width: 88px;
-    height: 88px;
     /* background: var(--sprite-background) -747px -88px; */
     background-image: url(http://localhost:8000/images/badges/levels/lvl10.png);
-    animation-duration: 5s;
+    animation-duration: 8s;
+}
+
+.sprite__text {
+    padding: 3px;
+    font-size: small;
+    color: var(--color-primary-1);
+    background-color: var(--primary-color);
+    border-radius: 5px;
 }

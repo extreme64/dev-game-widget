@@ -112,16 +112,16 @@ const AbilitiesModule = (function () {
         const questId = localStorage.getItem(QUEST_ID_LSKEY)
         const token = localStorage.getItem('rlgin')
 
-        let data = {
-            questHeroType: questHeroType
-        }
-        await fetch(`http://localhost:8000/api/project/${projectId}/quests/id/${questId}/abilities`, {
-            method: 'POST',
+        // TODO: Hero type select
+        // let data = {
+        //     questHeroType: questHeroType
+        // }
+        await fetch(`http://localhost:8000/api/project/${projectId}/quest/${questId}/abilities`, {
+            method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+            }
         })
             .then(response => response.json())
             .then(data => {
@@ -178,7 +178,7 @@ const AbilitiesModule = (function () {
         
         const urlAbilityIdVal = Number(abilityId)
 
-        await fetch(`http://localhost:8000/api/project/${projectId}/quests/id/${questId}/ability/${urlAbilityIdVal}`, {
+        await fetch(`http://localhost:8000/api/project/${projectId}/quest/${questId}/abilities/${urlAbilityIdVal}`, {
             method: 'PATCH',
             headers: {
                 'Authorization': `Bearer ${token}`,

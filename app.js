@@ -288,6 +288,9 @@ function resetStats() {
   // Set Abilities
   AbilitiesModule.onReady(abilites.children)
 
+  // Set Badges
+  Badges.onReady()
+
   // Set Tracking
   tracking.onReady(document)
 
