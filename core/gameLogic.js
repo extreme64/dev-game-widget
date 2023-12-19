@@ -15,10 +15,12 @@ const QUEST_WIN_STATUS_LSKEY = "dgw_quest_win_status"
  */
 // TODO: Check local or ask server ?!
 function runWinCondistions() {
-    if (currentLevel === SUCCESS_LEVEL) {
-        isDallyGameWon = true
+    if (currentLevel >= SUCCESS_LEVEL) {
+        isDailyGameWon = true
         alert("!!! Dev. Game Win !!!")
     }
+
+    return isDailyGameWon
 }
 
 /**
