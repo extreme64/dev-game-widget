@@ -1,5 +1,9 @@
-const stats = (function () {
+const Stats = (function () {
     
+    let resetBtn
+    let submitBtn
+    let workDescription
+
     const html = `
     <div class="widget__stats">
         <div id="new-work-form" class="widget__stats-inner">
@@ -27,11 +31,123 @@ const stats = (function () {
     const QUEST_SCORE_EL_SELECT = ".widget__work-score"
     const QUEST_LEVEL_EL_SELECT = ".widget__work-level"
 
-    const onReady = (() => {
+    const onReady = function() {
+
+        let score = localStorage.getItem(QUEST_SCORE_LSKEY)
+        let level = localStorage.getItem(QUEST_LEVEL_LSKEY)
+
         updateNodeInnerText(QUEST_DESC_EL_SELECT, localStorage.getItem(QUEST_DESC_LSKEY))
-        updateNodeInnerText(QUEST_SCORE_EL_SELECT, localStorage.getItem(QUEST_SCORE_LSKEY))
-        updateNodeInnerText(QUEST_LEVEL_EL_SELECT, localStorage.getItem(QUEST_LEVEL_LSKEY))
-    })
+        updateNodeInnerText(QUEST_SCORE_EL_SELECT, score)
+        updateNodeInnerText(QUEST_LEVEL_EL_SELECT, level)
+
+        currentScore = score
+        currentLevel = level
+
+        workDescription = document.getElementById('description');
+
+        resetBtn = document.getElementById('reset-btn');
+        resetBtn.addEventListener('click', resetButtonClick)
+
+        submitBtn = document.getElementById('submit-btn');
+        submitBtn.addEventListener('click', (e) => {
+            submitButtonClick(e)})
+    }
+
+    
+    /**
+     * Show new work form
+     *
+     * @param mixed e
+     * 
+     * @return [type]
+     * 
+     */
+    function resetButtonClick(e) {
+
+        const workForm = document.getElementById('new-work-form');
+
+        if (workForm.style.display === 'none') {
+            e.target.innerText = "Reset"
+            Stats.showNewQuestForm(true)
+            Abilities.toggleShow(false)
+        } else {
+            workDescription.value = ''
+            e.target.innerText = "Cancel"
+            Stats.showNewQuestForm(false)
+            Abilities.toggleShow(true)
+        }
+    }
+
+
+    /**
+     * Submit new work
+     *
+     * @param mixed e
+     * 
+     * @return [type]
+     * 
+     */
+    async function submitButtonClick(e) {
+
+        const projectId = 1;
+        const token = localStorage.getItem('rlgin')
+        const description = workDescription.value;
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', `Bearer ${token}`);
+
+        let requestBodydata = {
+            description: description
+        }
+
+        try {
+
+            let response = await fetch(`http://localhost:8000/api/project/${projectId}/quests`, {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify(requestBodydata)
+            });
+
+            const data = await response.json();
+            const resp = data.message
+
+            if (response.ok) {
+
+                localStorage.setItem(PROJECT_ID_LSKEY, resp.project.id)
+                localStorage.setItem(QUEST_ID_LSKEY, resp.quest.id)
+                localStorage.setItem(QUEST_DESC_LSKEY, resp.quest.name)
+                localStorage.setItem(QUEST_SCORE_LSKEY, resp.quest.newScore)
+                localStorage.setItem(QUEST_LEVEL_LSKEY, resp.quest.newLevel)
+                localStorage.setItem(QUEST_WIN_STATUS_LSKEY, resp.quest.winStatus)
+
+
+                Stats.updateNodeInnerText(Stats.QUEST_DESC_EL_SELECT, localStorage.getItem(QUEST_DESC_LSKEY))
+                Stats.updateNodeInnerText(Stats.QUEST_SCORE_EL_SELECT, localStorage.getItem(QUEST_SCORE_LSKEY))
+                Stats.updateNodeInnerText(Stats.QUEST_LEVEL_EL_SELECT, localStorage.getItem(QUEST_LEVEL_LSKEY))
+
+                Stats.showNewQuestForm(false)
+                AbilitiesModule.toggleShow(true)
+
+                resetStats()
+
+                // Create a custom event
+                const resetEvent = new CustomEvent('questReset', {
+                    bubbles: true,
+                    cancelable: true
+                });
+
+                // Dispatch the custom event on the targeted element
+                modal.dispatchEvent(resetEvent);
+
+            } else {
+                console.error('Error on create quest attempt!', response);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+
 
     const updateNodeInnerText = (nodeSElectore, textValue) => {
         const node = document.querySelector(nodeSElectore)
@@ -54,6 +170,13 @@ const stats = (function () {
         }
     }
 
+    /* Page timeline events */
+    document.addEventListener('DOMContentLoaded', function () {})
+
+    window.addEventListener('load', function () {
+        Stats.showNewQuestForm(false);
+        Stats.onReady(this);
+    });
 
     return {
         html,

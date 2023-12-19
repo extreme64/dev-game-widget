@@ -1,4 +1,4 @@
-const tracking = (function () {
+const Tracking = (function () {
 
     const projectId = 1;
     let capturedEvents = [];
@@ -66,14 +66,18 @@ const tracking = (function () {
             const levelToUpdateTo = data.message.newLevel
             const abilitiesToUpdateTo = data.message.abilitiesUsed
 
-            AbilitiesModule.updateAbilityButtons(abilitiesToUpdateTo)
+            Abilities.updateAbilityButtons(abilitiesToUpdateTo)
 
             localStorage.setItem(QUEST_SCORE_LSKEY, scoreToUpdateTo)
             localStorage.setItem(QUEST_LEVEL_LSKEY, levelToUpdateTo)
             localStorage.setItem(QUEST_ABILITIES_LSKEY, abilitiesToUpdateTo)
 
-            stats.updateNodeInnerText(stats.QUEST_SCORE_EL_SELECT, scoreToUpdateTo)
-            stats.updateNodeInnerText(stats.QUEST_LEVEL_EL_SELECT, levelToUpdateTo)
+            Stats.updateNodeInnerText(Stats.QUEST_SCORE_EL_SELECT, scoreToUpdateTo)
+            Stats.updateNodeInnerText(Stats.QUEST_LEVEL_EL_SELECT, levelToUpdateTo)
+
+            // TODO: Core data change needs to be centrilized
+            currentScore = scoreToUpdateTo
+            currentLevel = levelToUpdateTo
 
             if (Number(levelToUpdateTo) > Number(localStorage.getItem(QUEST_LEVEL_LSKEY))) {
                 Badges.showAward(levelToUpdateTo)
@@ -86,6 +90,11 @@ const tracking = (function () {
             console.error('Error sending events:', error);
         });
     }
+
+    /* Page timeline events */
+    window.addEventListener('load', function (e) {
+        Tracking.onReady(this)
+    });
 
     return {
         onReady,
