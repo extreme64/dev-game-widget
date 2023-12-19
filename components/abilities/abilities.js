@@ -1,4 +1,4 @@
-const AbilitiesModule = (function () {
+const Abilities = (function () {
 
     // FIXME: Remove all emojies to images, some websites changed them to their verrsions
     // Score update issue.

@@ -16,10 +16,10 @@ const AppView = (() => {
         ${setup.html}
 
         <!-- stats wrap -->
-        ${stats.html}
+        ${Stats.html}
 
         <!-- abilities wrap -->
-        ${AbilitiesModule.html}
+        ${Abilities.html}
       </div>
       
       <!-- Awards -->
