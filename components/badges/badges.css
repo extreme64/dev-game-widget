@@ -10,7 +10,7 @@
     right: 5px;
     display: flex;
     flex-direction: column;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-2);
     z-index: 9;
 }
 

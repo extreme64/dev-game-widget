@@ -22,14 +22,18 @@ const Badges = (function () {
         </div>
     </div>`;
 
-    function onReady() {
-        let badgesLevels = document.querySelector("#badges-levels");
+    let badgesLevelsEl
 
-        badgesLevels.addEventListener('mouseenter', function(){
-            toggleAwards(true, badgesLevels)
+    function onReady() {
+        badgesLevelsEl = document.querySelector("#badges-levels");
+
+        restoreFromLevel(levelsShowing());
+
+        badgesLevelsEl.addEventListener('mouseenter', function(){
+            toggleAwards(true, badgesLevelsEl)
         })
-        badgesLevels.addEventListener('mouseleave', function () {
-            toggleAwards(false, badgesLevels)
+        badgesLevelsEl.addEventListener('mouseleave', function () {
+            toggleAwards(false, badgesLevelsEl)
         })
     }
 
@@ -52,19 +56,33 @@ const Badges = (function () {
         })
     })
 
-    const showAward = ((awardID) => {
-        
-        const awardWrapEl = document.querySelector("#badges-levels");
-
+    const showAward = ((awardID) => 
+    {
         const levelBadge = document.createElement('div');
         levelBadge.dataset.ui = "badge-item" 
+        levelBadge.dataset.type = "level" 
         levelBadge.innerHTML = '<span class="sprite__text">' + awardID + '</span>';
         levelBadge.style.zIndex = awardID
         levelBadge.classList.add('badges__background', 'sprite--compact', 'sprite' + awardID);
-        awardWrapEl.insertBefore(levelBadge, awardWrapEl.firstChild);
+        badgesLevelsEl.insertBefore(levelBadge, badgesLevelsEl.firstChild);
 
     })
 
+    const levelsShowing = (() => 
+    {
+        let levelsNumber = badgesLevelsEl.querySelectorAll('[type="level"]').length
+        return levelsNumber
+    });
+    
+    const restoreFromLevel = ((presentNodes) => 
+    {
+        let firstLevelAwardAt = 2
+
+        let starLevelValue = presentNodes + firstLevelAwardAt;
+        for (let index = starLevelValue; index <= currentLevel; index++) {
+            showAward(index)
+        }
+    });
 
     return {
         showAward: showAward,
