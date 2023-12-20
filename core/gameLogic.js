@@ -7,6 +7,19 @@ const QUEST_LEVEL_LSKEY = "dgw_quest_current_level"
 const QUEST_ABILITIES_LSKEY = "dgw_quest_abilities"
 const QUEST_WIN_STATUS_LSKEY = "dgw_quest_win_status"
 
+/**
+ * Reset stats.
+ *
+ * @since 1.0.0
+ */
+function resetStats() {
+    currentLevel = 1
+    currentScore = 0
+    isDailyGameWon = false
+
+    saveToLocal('dgw_quest_current_score', currentScore)
+    saveToLocal('dgw_quest_current_level', currentLevel)
+}
 
 /**
  * Checks if the currentLevel is equal to the SUCCESS_LEVEL

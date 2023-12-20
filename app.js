@@ -97,24 +97,6 @@ let projectAttrs
 
 // ----------------------------------------------------------------------------------
 
-// TODO: Add URL scope to be entered for a tast.
-/**
- * Reset stats.
- *
- * @since 1.0.0
- */
-function resetStats() {
-  currentLevel = 1
-  currentScore = 0
-  isDailyGameWon = false
-
-  saveToLocal('dgw_quest_current_score', currentScore)
-  saveToLocal('dgw_quest_current_level', currentLevel)
-}
-
-
-// ----------------------------------------------------------------------------------
-
 // Page: Ready
 document.addEventListener('DOMContentLoaded', function () {
   console.log('Event', 'DOMContentLoaded!');
@@ -172,12 +154,10 @@ window.addEventListener('load', async function (e) {
   
   // Badges
   Badges.onReady()
-
   
   window.onerror = function (message, source, lineno, colno, error) {
     // Log or handle the error here
     console.info('Track Error:', message);
-
     // You can also send the error information to a server for tracking or analysis
     // sendErrorToServer(message, source, lineno, colno, error);
   };
