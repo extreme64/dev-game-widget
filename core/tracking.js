@@ -79,7 +79,7 @@ const Tracking = (function () {
             currentScore = scoreToUpdateTo
             currentLevel = levelToUpdateTo
 
-            if (Number(levelToUpdateTo) > Number(localStorage.getItem(QUEST_LEVEL_LSKEY))) {
+            if ((String(data.message.isLevelUp).toLowerCase() == "true")) {
                 Badges.showAward(levelToUpdateTo)
             }
             
