@@ -75,7 +75,6 @@ const Tracking = (function () {
             Stats.updateNodeInnerText(Stats.QUEST_SCORE_EL_SELECT, scoreToUpdateTo)
             Stats.updateNodeInnerText(Stats.QUEST_LEVEL_EL_SELECT, levelToUpdateTo)
 
-            // TODO: Core data change needs to be centrilized
             currentScore = scoreToUpdateTo
             currentLevel = levelToUpdateTo
 

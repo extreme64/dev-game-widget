@@ -50,14 +50,6 @@ const inetrvalFormModal = 15000
  */
 const SUCCESS_LEVEL = 5 
 
-// const PROJECT_ID_LSKEY = "dgw_project_id"
-// const QUEST_ID_LSKEY = "dgw_quest_id"
-// const QUEST_DESC_LSKEY = "dgw_quest_desc"
-// const QUEST_SCORE_LSKEY = "dgw_quest_current_score"
-// const QUEST_LEVEL_LSKEY = "dgw_quest_current_level"
-// const QUEST_ABILITIES_LSKEY = "dgw_quest_abilities"
-// const QUEST_WIN_STATUS_LSKEY = "dgw_quest_win_status"
-
 /**
  * The current score of the game.
  * 
@@ -174,11 +166,6 @@ window.addEventListener('load', async function (e) {
 
   user.onReady(userEl)
   user.handleFormDisplay((localStorage.getItem('rlgin')) ? true : false)
-
-
-  // FIXME: Check if no quest active 
-  // Stats.showNewQuestForm(false)
-  // Stats.onReady()
 
   // Abilities
   Abilities.onReady(abilites.children)
